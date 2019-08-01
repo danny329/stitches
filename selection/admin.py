@@ -5,8 +5,6 @@ from .models import Cuff, Collar, Design, Measurement, ShirtFit, Back, ClothType
 
 admin.site.register(Cuff)
 admin.site.register(Collar)
-admin.site.register(Design)
-admin.site.register(Measurement)
 admin.site.register(StandardSize)
 admin.site.register(ShirtFit)
 admin.site.register(Pocket)

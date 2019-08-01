@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<!-- MATERIAL DESIGN ICONIC FONT -->
-		<link rel="stylesheet" href="{% static 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css '%}">
+		<link rel="stylesheet" href="{% static 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'%}">
 
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="{% static 'css/signup_style.css'%}">
@@ -16,43 +16,44 @@
 
 	<body>
 
-		<div class="wrapper" style="background-image: url('{% static 'img/bg-registration-form-1.jpg '%} ');">
+		<div class="wrapper" style="background-image: url({% static 'img/bg-registration-form-1.jpg'%});">
 			<div class="inner">
 				<div class="image-holder">
-					<img src="{% static 'img/registration-form-1.jpg '%}" alt="">
+					<img src="{% static 'img/registration-form-1.jpg'%}" alt="">
 				</div>
-				<form action="">
+				<form action="/customer/signupform" method="post">
+					 {% csrf_token %}
 					<h3>Registration Form</h3>
 					<div class="form-group">
-						<input type="text" placeholder="First Name" class="form-control">
-						<input type="text" placeholder="Last Name" class="form-control">
+						<input type="text" placeholder="First Name" name="first_name" class="form-control">
+						<input type="text" placeholder="Last Name" name="last_name" class="form-control">
 					</div>
 					<div class="form-wrapper">
-						<input type="text" placeholder="Username" class="form-control">
+						<input type="text" placeholder="Username" name="username" class="form-control">
 						<i class="zmdi zmdi-account"></i>
 					</div>
 					<div class="form-wrapper">
-						<input type="text" placeholder="Email Address" class="form-control">
+						<input type="text" placeholder="Email Address" name="email" class="form-control">
 						<i class="zmdi zmdi-email"></i>
 					</div>
 					<div class="form-wrapper">
-						<select name="" id="" class="form-control">
+						<select name="gender" id="" class="form-control">
 							<option value="" disabled selected>Gender</option>
 							<option value="male">Male</option>
-							<option value="femal">Female</option>
+							<option value="female">Female</option>
 							<option value="other">Other</option>
 						</select>
 						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 					</div>
 					<div class="form-wrapper">
-						<input type="password" placeholder="Password" class="form-control">
+						<input type="password" placeholder="Password" name="password1" class="form-control">
 						<i class="zmdi zmdi-lock"></i>
 					</div>
 					<div class="form-wrapper">
-						<input type="password" placeholder="Confirm Password" class="form-control">
+						<input type="password" placeholder="Confirm Password" name="password2" class="form-control">
 						<i class="zmdi zmdi-lock"></i>
 					</div>
-					<button>Register
+					<button type="submit">Register
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
 				</form>

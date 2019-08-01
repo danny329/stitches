@@ -21,7 +21,7 @@ class ButtonHole(models.Model):
     button_hole_image = models.ImageField(upload_to='pics/ButtonHole')
 
     def __str__(self):
-        return self.button_style
+        return self.button_hole_style
 
 
 class Collar(models.Model):
