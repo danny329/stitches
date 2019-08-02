@@ -76,12 +76,24 @@
                                         <a class="dropdown-item" href="elements.html">Elements</a>
                                     </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="signup/">Sign Up</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="login/">Login</a>
-                                </li>
+
+                                         {% if user.is_authenticated %}
+                                             <li class="nav-item">
+                                                <a class="nav-link" href="">hello,{{user.username}}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/customer/logout">Logout</a>
+                                            </li>
+
+
+										{% else %}
+											<li class="nav-item">
+                                                <a class="nav-link" href="signup/">Sign Up</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="login/">Login</a>
+                                            </li>
+										{% endif %}
                             </ul>
                         </div>
                     </nav>

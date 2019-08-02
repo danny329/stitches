@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage',
     'selection',
+    'order',
+    'payment',
+    'customer',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +81,7 @@ WSGI_APPLICATION = 'stitches.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
+        'NAME': 'stitchesdb',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',
