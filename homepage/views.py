@@ -8,4 +8,5 @@ def login(request):
     return render(request, 'login_page.html')
 
 def signup(request):
+
     return render(request, 'signup.html')
