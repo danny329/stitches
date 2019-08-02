@@ -47,7 +47,8 @@ def login_page(request):
             return redirect('/')
         else:
             print('invalid ')
-            return redirect('login')
+            return redirect('/login')
+
 
 
 def logout(request):
