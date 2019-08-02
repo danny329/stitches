@@ -1,22 +1,10 @@
+{% extends 'com.html' %}
 {% load static %}
 {% static "images" as baseUrl %}
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Wizard-v4</title>
-	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/opensans-font.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/roboto-font.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'%}">
-	<!-- datepicker -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.min.css'%}">
-	<!-- Main Style Css -->
-    <link rel="stylesheet" href="{% static 'css/selection_style.css'%}"/>
-</head>
-<body>
+
+{% block content %}
+    <!--::header part start::-->
+
 	<div class="page-content" style="background-image: url('{% static 'img/wizard-v4.jpg'%}')">
 		<div class="wizard-v4-content">
 			<div class="wizard-form">
@@ -241,9 +229,17 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 	<script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
 	<script src="{% static 'js/jquery.steps.js'%}"></script>
 	<script src="{% static 'js/jquery-ui.min.js'%}"></script>
 	<script src="{% static 'js/main.js'%}"></script>
 </body>
 </html>
+=======
+	
+<!-- </body> -->
+
+<!-- footer part start-->
+{% endblock %}
+
