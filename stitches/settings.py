@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'stitchesdb',
         'USER': 'postgres',
-        'PASSWORD': 'danielpaul',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
 
     }
