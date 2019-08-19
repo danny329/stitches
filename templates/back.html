@@ -1,0 +1,74 @@
+ {% load static %}
+{% static "images" as baseUrl %}
+{% block back %}
+  <head>
+<!--     to send data to server using jquery-->
+     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+</script>
+      <style>
+       .back_radio{
+            transform: scale(1);
+            background:red;
+            position:absolute;
+            width:200px;
+            height:130px;
+            z-index: 1;
+            opacity: 0.0;
+
+       }
+        .labradio
+        {
+            cursor: pointer;
+            position:relative;
+
+
+        }
+       .labradio .back_radio:checked + .labradio .back
+       {
+            border:0.5px solid red;
+       }
+
+
+    </style>
+ </head>
+<section>
+     <form method="post" name="senddataback" action="/selection/select/">
+        {% csrf_token %}
+    <div class="form-row mt-2">
+        <div class="form-holder form-holder-2 row">
+            {% for val in back %}
+
+
+             <div class="col-sm ">
+             <label for="radio1" class="labradio mx-auto">
+             <input class="back_radio mx-auto"  type='radio'  value='{{val}}' name='back_select' id="radio1" />
+                <div class="card  back" style="width:150px; height:150px;font-size: 8px;">
+                  <img class="card-img-top"  src="{{val.back_image.url}}" alt="Card image">
+                  <div class="mt-2 btn btn-light">
+                    <p class="text-center "><b> {{val.back_style}} </b></p>
+                  </div>
+                </div>
+
+            </div>
+            </label>
+
+        {% empty %}
+                <p class="mx-auto text-center">Sorry, no selection to display.</p>
+        {% endfor %}
+
+
+        </div>
+
+    </div>
+    </form>
+</section>
+  <script type='text/javascript'>
+
+ $(document).ready(function() {
+   $('input[name=back_select]').change(function(){
+        $('form[name=senddataback]').submit();
+   });
+  });
+
+</script>
+ {% endblock %}

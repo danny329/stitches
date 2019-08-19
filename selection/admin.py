@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cuff, Collar, Design, Measurement, ShirtFit, Back, ClothType, Color, Front, Pattern, Pocket, StandardSize, Button, ButtonHole
+from .models import Cuff, Collar, Design, Measurement,ClothMenu, ShirtFit, Back, ClothType, Color, Front, Pattern, Pocket, StandardSize, Button, ButtonHole
 
 # Register your models here.
 
@@ -15,3 +15,4 @@ admin.site.register(ClothType)
 admin.site.register(Back)
 admin.site.register(ButtonHole)
 admin.site.register(Button)
+admin.site.register(ClothMenu)

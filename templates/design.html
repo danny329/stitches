@@ -1,0 +1,44 @@
+{% load static %}
+{% static "images" as baseUrl %}
+{% block design %}
+<section>
+    <div class="container">
+        <!-- selection categories nav pills-->
+                <ul class="nav nav-tabs w-75  justify-content-center p-2 mx-auto">
+                  <li class="nav-item "><a class="nav-link active" data-toggle="tab" href="#COLLAR">COLLAR <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#CUFF">CUFF <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#BACK">BACK <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#FRONT">FRONT <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#POCKET">POCKET <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!--tab 1 - fabric-->
+                      <div class="tab-pane container fade show active" id="COLLAR">
+                        {% include 'collar.html' %}
+
+                      </div>
+                    <!--tab 2 - design-->
+                      <div class="tab-pane container fade" id="CUFF">
+
+                        {% include 'cuff.html' %}
+
+                      </div>
+                      <div class="tab-pane container fade" id="BACK">
+
+                        {% include 'back.html' %}
+                      </div>
+                      <div class="tab-pane container fade" id="FRONT">
+
+
+                          .daniel..
+                      </div>
+                      <div class="tab-pane container fade" id="POCKET">
+
+                          ..merin.
+                      </div>
+                </div>
+    </div>
+</section>
+{% endblock %}

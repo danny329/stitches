@@ -1,0 +1,89 @@
+ {% load static %}
+{% static "images" as baseUrl %}
+{% block collar %}
+  <head>
+<!--     to send data to server using jquery-->
+     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+</script>
+      <style>
+       .collar_radio{
+            transform: scale(1);
+            background:red;
+            position:absolute;
+            width:130px;
+            height:130px;
+
+            z-index: 1;
+            opacity: 0.0;
+
+       }
+        .labradio
+        {
+            cursor: pointer;
+            position:relative;
+
+
+        }
+       .labradio .collar_radio:checked + .labradio .collar
+       {
+            border:0.5px solid red;
+       }
+
+
+    </style>
+ </head>
+<section>
+     <form method="post" name="senddatacollar" action="/selection/select/">
+        {% csrf_token %}
+    <div class="form-row mx-auto">
+        <div class="form-holder form-holder-2 row">
+            {% for val in collar %}
+
+
+             <div class="col-sm-2 ">
+                  <label for="radio1" class="labradio mx-auto">
+             <input class="collar_radio mx-auto "  type='radio'  value='{{val}}' name='collar_select' id="radio1" />
+                <div class="card  collar" style="width:130px; height:130px;font-size: 8px;">
+                  <img class="card-img-top" src="{{val.collar_image.url}}" alt="Card image">
+                  <div class="mt-2 btn btn-light">
+                    <p class="text-center"><b> {{val.collar_style}} </b></p>
+                  </div>
+                </div>
+
+            </div>
+            </label>
+
+        {% empty %}
+                <p class="mx-auto text-center">Sorry, no selection to display.</p>
+        {% endfor %}
+<!--hidden cols in this for loop-->
+<!--        {% for r in rest %}-->
+<!--            <input style="display:hidden;" class="collar_radio mx-auto "  type='radio' value='{{val}}' name='collar_select' id="" />-->
+<!--            <label  style="display:hidden;" for="radio1" class="labradio mx-auto">-->
+<!--            <div class="col-sm-2"  style="visibility:hidden;">-->
+<!--                <div class="card  collar" style="width:120px; height:150px;font-size: 12px;">-->
+<!--                  <img class="card-img-top" src="{{val.collar_image.url}}" alt="Card image">-->
+<!--                  <div class="mt-2">-->
+
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            </label>-->
+<!--        {% endfor %}-->
+
+        </div>
+
+    </div>
+    </form>
+</section>
+  <script type='text/javascript'>
+
+ $(document).ready(function() {
+   $('input[name=collar_select]').change(function(){
+        $('form[name=senddatacollar]').submit();
+   });
+  });
+
+</script>
+ {% endblock %}

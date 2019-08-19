@@ -1,0 +1,74 @@
+ {% load static %}
+{% static "images" as baseUrl %}
+{% block cuff %}
+  <head>
+<!--     to send data to server using jquery-->
+     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+</script>
+      <style>
+       .cuff_radio{
+            transform: scale(1);
+            background:red;
+            position:absolute;
+            width:200px;
+            height:130px;
+            z-index: 1;
+            opacity: 0.0;
+
+       }
+        .labradio
+        {
+            cursor: pointer;
+            position:relative;
+
+
+        }
+       .labradio .cuff_radio:checked + .labradio .cuff
+       {
+            border:0.5px solid red;
+       }
+
+
+    </style>
+ </head>
+<section>
+     <form method="post" name="senddatacuff" action="/selection/select/">
+        {% csrf_token %}
+    <div class="form-row mt-2">
+        <div class="form-holder form-holder-2 row">
+            {% for val in cuff %}
+
+
+             <div class="col-sm ">
+             <label for="radio1" class="labradio mx-auto">
+             <input class="cuff_radio mx-auto"  type='radio'  value='{{val}}' name='cuff_select' id="radio1" />
+                <div class="card  cuff" style="width:150px; height:150px;font-size: 8px;">
+                  <img class="card-img-top"  src="{{val.cuff_image.url}}" alt="Card image">
+                  <div class="mt-2 btn btn-light">
+                    <p class="text-center "><b> {{val.cuff_style}} </b></p>
+                  </div>
+                </div>
+
+            </div>
+            </label>
+
+        {% empty %}
+                <p class="mx-auto text-center">Sorry, no selection to display.</p>
+        {% endfor %}
+
+
+        </div>
+
+    </div>
+    </form>
+</section>
+  <script type='text/javascript'>
+
+ $(document).ready(function() {
+   $('input[name=cuff_select]').change(function(){
+        $('form[name=senddatacuff]').submit();
+   });
+  });
+
+</script>
+ {% endblock %}

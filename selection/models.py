@@ -107,6 +107,7 @@ class Measurement(models.Model):
 
 class ClothMenu(models.Model):
     name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='pics/ClothMenu')
     color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name='Color')
     pattern = models.ForeignKey(Pattern, on_delete=models.CASCADE, related_name='pattern')
     cloth_type = models.ForeignKey(ClothType, on_delete=models.CASCADE, related_name='clothtype')
@@ -117,7 +118,7 @@ class ClothMenu(models.Model):
     button_hole = models.ForeignKey(ButtonHole, on_delete=models.CASCADE, related_name='buttonhole_cm')
     pocket = models.ForeignKey(Pocket, on_delete=models.CASCADE, related_name='pocket_cm')
     front = models.ForeignKey(Front, on_delete=models.CASCADE, related_name='front_cm')
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     standard_size = models.ForeignKey(StandardSize, on_delete=models.CASCADE, related_name='standardsize_cm')
 
     def __str__(self):
