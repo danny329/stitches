@@ -5,40 +5,41 @@
     <div class="container">
         <!-- selection categories nav pills-->
                 <ul class="nav nav-tabs w-75  justify-content-center p-2 mx-auto">
-                  <li class="nav-item "><a class="nav-link active" data-toggle="tab" href="#COLLAR">COLLAR <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#CUFF">CUFF <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#BACK">BACK <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#FRONT">FRONT <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#POCKET">POCKET <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item "><a class="nav-link {{scriptdco}}" data-toggle="tab" href="#COLLAR">COLLAR <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scriptdcu}}" data-toggle="tab" href="#CUFF">CUFF <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scriptdb}}" data-toggle="tab" href="#BACK">BACK <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scriptdf}}" data-toggle="tab" href="#FRONT">FRONT <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scriptdp}}" data-toggle="tab" href="#POCKET">POCKET <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <!--tab 1 - fabric-->
-                      <div class="tab-pane container fade show active" id="COLLAR">
+                      <div class="tab-pane container fade {{scriptdco}}" id="COLLAR">
                         {% include 'collar.html' %}
 
                       </div>
                     <!--tab 2 - design-->
-                      <div class="tab-pane container fade" id="CUFF">
+                      <div class="tab-pane container fade {{scriptdcu}}" id="CUFF">
 
                         {% include 'cuff.html' %}
 
                       </div>
-                      <div class="tab-pane container fade" id="BACK">
+                      <div class="tab-pane container fade {{scriptdb}}" id="BACK">
 
                         {% include 'back.html' %}
                       </div>
-                      <div class="tab-pane container fade" id="FRONT">
+                      <div class="tab-pane container fade {{scriptdf}}" id="FRONT">
 
 
-                          .daniel..
+                         {% include 'front.html' %}
                       </div>
-                      <div class="tab-pane container fade" id="POCKET">
+                      <div class="tab-pane container fade {{scriptdp}}" id="POCKET">
 
-                          ..merin.
+                          {% include 'pocket.html' %}
                       </div>
                 </div>
     </div>
+    {% include 'custom_summary.html' %}
 </section>
 {% endblock %}

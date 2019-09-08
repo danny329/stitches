@@ -1,0 +1,21 @@
+{% load static %}
+{% static "images" as baseUrl %}
+{% block finish %}
+
+
+<div>
+    <form method="post" action="/selection/addtocart/">{% csrf_token %}
+        <div style="margin-top:-150px;" class="mx-auto">
+            {% include 'custom_summary.html' %}
+        </div>
+        <div class="row">
+            <div class="col-sm-12 mx-auto text-center">
+                <button type="submit" class="btn btn-light ">ADD TO CART</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% load sweetify %}
+    {% sweetify %}
+{% endblock %}

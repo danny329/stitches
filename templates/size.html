@@ -1,0 +1,74 @@
+{% load static %}
+{% static "images" as baseUrl %}
+{% block size %}
+<head>
+      <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+</script>
+
+</head>
+<div class="container">
+    <div class="row text-center mx-auto" >
+        <div class="col-sm-12 p-3  mb-3" >
+        {% if user.is_authenticated %}
+            <h5 id="show_anchor" class="btn-light mx-auto text-center pt-3" style="width:450px;height:50px;">Custom Measurement</h5>
+            <div id='manual' class="col-sm-12 "> {% include 'measurement.html' %}</div>
+        {% endif %}
+        </div>
+        <div class="col-sm-12 mb-3" style="width:50%;">
+            <h5>login to use previously added measurement</h5>
+        </div>
+        <div class="row mx-auto p-3 btn-light" style="width:50%;">
+            <h5 class="col-sm-12">I WANT TO ORDER A STANDARD SIZE.</h5>
+            <div class="col-sm-6" >
+            <form action="/selection/select/SIZE/" name="senddata1" method="post">
+                {% csrf_token %}
+                <select name="shirt_fit" id="shirt_fit" class="form-control text-center">
+                    <option value=""  disabled selected>SHIRT FIT</option>
+                    {% for val in shirtfit %}
+                    <option value="{{val}}">{{val}}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            </div>
+            <div class="col-sm-6" >
+            <form action="/selection/select/SIZE/" name="senddata2" method="post">
+                {% csrf_token %}
+                <select name="Standard_size" id="Standard_size" class="form-control text-center">
+                    <option value=""  disabled selected>STANDARD SIZE</option>
+                    {% for val in standardsize %}
+                    <option value="{{val}}">{{val}}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+        </div>
+    </div>
+    <br>
+    {% include 'custom_summary.html' %}
+</div>
+ <script type='text/javascript'>
+
+ $(document).ready(function() {
+   $('#shirt_fit').change(function(){
+        $('form[name=senddata1]').submit();
+   });
+  });
+$(document).ready(function() {
+   $('#Standard_size').change(function(){
+        $('form[name=senddata2]').submit();
+   });
+  });
+
+$(document).ready(function() {
+                $("#manual").hide();
+   });
+
+ $(document).ready(function() {
+            $("#show_anchor").click(function() {
+                $("#manual").toggle();
+            });
+
+        });
+
+</script>
+{% endblock %}

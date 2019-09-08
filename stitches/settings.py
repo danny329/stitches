@@ -38,11 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'homepage',
+    'customer',
     'selection',
     'order',
     'payment',
-    'customer',
+    'crispy_forms',
+    'sweetify',
+
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

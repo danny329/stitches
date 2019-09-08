@@ -34,7 +34,7 @@
     <section class="text-center">
 			                <div class="inner mx-auto ">
 			                	<h3>Fabric Selections</h3>
-                                <form action="/selection/select/1/" method="POST">
+                                <form action="/selection/select/FABRIC/" method="POST">
                                     {% csrf_token %}
                                     <div class="form-row col text-center">
                                     <div class="form-wrapper  col-sm-4">
@@ -68,7 +68,7 @@
 									</div>
 								</div>
                                 </form>
-                                <form method="post" name="senddata" action="/selection/select/">
+                                <form method="post" name="senddata" action="/selection/select/FABRIC/">
                                     {% csrf_token %}
 								<div class="form-row mt-2">
 									<div class="form-holder form-holder-2 row">
@@ -117,6 +117,7 @@
 						        </form>
 							</div>
 			            </section>
+ {% include 'custom_summary.html' %}
  <script type='text/javascript'>
 
  $(document).ready(function() {

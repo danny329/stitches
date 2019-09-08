@@ -1,10 +1,13 @@
 {% block custum_summary %}
   <div class="summary row mb-5" style="margin-top:150px;">
 
-                    {% if summary.cloth_menu  %}
-                    <div class="text-center mx-auto container">
+                    {% if summary.cloth_menu or summary.collar or summary.cuff or summary.back or summary.front or summary.pocket or summary.button or summary.buttonhole or summary.size or summary.standard_size or summary.shirtfit%}
+                        <div class="text-center mx-auto container mb-3">
                             <h1>CUSTOMIZATION SUMMARY :</h1>
                         </div>
+                    {% endif %}
+                    {% if summary.cloth_menu  %}
+
                     <div class="col-sm-3">
                         <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
 
@@ -12,54 +15,60 @@
                     {% endif %}
                     {% if summary.collar %}
                          <div class="col-sm-3">
-                             <h6><img src="{{summary.collar.collar_image.url}}" style="width:20px;height:20px;"> Collar : {{summary.collar.collar_style}}</h6>
+                             <h6><img src="{{summary.collar.collar_image.url}}" style="width:20px;height:20px;"> Collar : {{summary.collar.collar_style}} {{defaultcollar}}</h6>
                          </div>
                     {% endif %}
                     {% if summary.cuff %}
                     <div class="col-sm-3">
-                        <h6><img src="{{summary.cuff.cuff_image.url}}" style="width:20px;height:20px;"> Cuff : {{summary.cuff.cuff_style}}</h6>
+                        <h6><img src="{{summary.cuff.cuff_image.url}}" style="width:20px;height:20px;"> Cuff : {{summary.cuff.cuff_style}} {{defaultcuff}}</h6>
 
                     </div>
                     {% endif %}
                     {% if summary.back %}
                     <div class="col-sm-3">
-                        <h6><img src="{{summary.back.back_image.url}}" style="width:20px;height:20px;"> Back : {{summary.back.back_style}}</h6>
+                        <h6><img src="{{summary.back.back_image.url}}" style="width:20px;height:20px;"> Back : {{summary.back.back_style}} {{defaultback}}</h6>
 
                     </div>
                     {% endif %}
                     {% if summary.button %}
                     <div class="col-sm-3">
-                        <h6><img src="{{summary.button.button_image.url}}" style="width:20px;height:20px;"> Button : {{summary.button.button_style}}</h6>
+                        <h6><img src="{{summary.button.button_image.url}}" style="width:20px;height:20px;"> Button : {{summary.button.button_style}} {{defaultbutton}}</h6>
 
                     </div>
                     {% endif %}
                     {% if summary.button_hole %}
                     <div class="col-sm-3">
-                        <h6><img src="{{summary.button_hole.button_hole_image.url}}" style="width:20px;height:20px;"> Button Hole : {{summary.button_hole.button_hole_style}}</h6>
+                        <h6><img src="{{summary.button_hole.button_hole_image.url}}" style="width:20px;height:20px;"> Button Hole : {{summary.button_hole.button_hole_style}} {{defaultbutton_hole}}</h6>
 
                     </div>
                     {% endif %}
                     {% if summary.pocket %}
                     <div class="col-sm-3">
-                        <h6><img src="{{summary.pocket.pocket_image.url}}" style="width:20px;height:20px;"> Pocket : {{summary.pocket.pocket_style}}</h6>
+                        <h6><img src="{{summary.pocket.pocket_image.url}}" style="width:20px;height:20px;"> Pocket : {{summary.pocket.pocket_style}} {{defaultpocket}}</h6>
 
                     </div>
                     {% endif %}
                     {% if summary.front %}
                     <div class="col-sm-3">
-                        <h6><img src="{{summary.front.front_image.url}}" style="width:20px;height:20px;"> Front : {{summary.front.front_style}}</h6>
+                        <h6><img src="{{summary.front.front_image.url}}" style="width:20px;height:20px;"> Front : {{summary.front.front_style}} {{defaultfront}}</h6>
 
                     </div>
                     {% endif %}
                     {% if summary.size %}
                     <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
+                        <h6><img src="{{summary.size}}" style="width:20px;height:20px;"> Size : {{summary.size.profile_name}}</h6>
 
                     </div>
                     {% endif %}
                     {% if summary.standard_size %}
                     <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
+                        <h6><img src="{{summary.standard_size.standard_size_style}}" style="width:20px;height:20px;"> Standard size : {{summary.standard_size.standard_size_style}}</h6>
+
+                    </div>
+                    {% endif %}
+                    {% if summary.shirtfit %}
+                    <div class="col-sm-3">
+                        <h6><img src="{{summary.shirtfit.shirt_fit_style}}" style="width:20px;height:20px;"> ShirtFit : {{summary.shirtfit.shirt_fit_style}}</h6>
 
                     </div>
                     {% endif %}

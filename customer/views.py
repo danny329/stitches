@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from .models import UserDetails
-
+from selection.models import Design
 
 # Create your views here.
 
@@ -52,5 +52,7 @@ def login_page(request):
 
 
 def logout(request):
+
     auth.logout(request)
+
     return redirect('/')

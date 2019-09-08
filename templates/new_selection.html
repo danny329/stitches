@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="icon" href="{% static 'img/favicon.png'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/opensans-font.css'%}">
@@ -15,26 +16,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
   <title>Document</title>
-
+   <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+</script>
 </head>
 <body style="background-image: url('{% static 'img/wizard-v4.jpg'%}')">
 {% include 'navbar.html' %}
+
+
 <div class="container-fluid" >
     <div class="jumbotron w-75  justify-content-center p-2 mx-auto" style="margin-top:100px;">
         <div class="">
                <!-- selection categories nav pills-->
                 <ul class="nav nav-pills w-75  justify-content-center p-2 mx-auto">
-                  <li class="nav-item "><a class="nav-link active" data-toggle="pill" href="#FABRIC">FABRIC <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#DESIGN">DESIGN <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#DETAILS">DETAILS <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#SIZE">SIZE <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#FINISH">FINISH <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
+                  <li class="nav-item "><a class="nav-link {{scriptf}}" data-toggle="pill" href="#FABRIC">FABRIC <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scriptd}}" data-toggle="pill" href="#DESIGN">DESIGN <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scriptde}}" data-toggle="pill" href="#DETAILS">DETAILS <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scripts}}" data-toggle="pill" href="#SIZE">SIZE <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scriptfi}}" data-toggle="pill" href="#FINISH">FINISH <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <!--tab 1 - fabric-->
-                      <div class="tab-pane container fade show active" id="FABRIC">
+                      <div class="tab-pane container fade {{scriptf}}" id="FABRIC">
                            <div class="progress">
                                 <div class="progress-bar" style="width:20%;height:10%;"></div>
                            </div>
@@ -42,104 +46,40 @@
 
                       </div>
                     <!--tab 2 - design-->
-                      <div class="tab-pane container fade" id="DESIGN">
+                      <div class="tab-pane container fade {{scriptd}}" id="DESIGN">
 
                            <div class="progress">
                             <div class="progress-bar" style="width:40%;height:10%;"></div>
                           </div>
                           {% include 'design.html' %}
                       </div>
-                      <div class="tab-pane container fade" id="DETAILS">
+                      <div class="tab-pane container fade {{scriptde}}" id="DETAILS">
                            <div class="progress">
                                 <div class="progress-bar" style="width:60%;height:10%;"></div>
                            </div>
-                          ..merin.
+                          {% include 'details.html' %}
                       </div>
-                      <div class="tab-pane container fade" id="SIZE">
+                      <div class="tab-pane container fade {{scripts}}" id="SIZE">
 
                            <div class="progress">
                             <div class="progress-bar" style="width:80%;height:10%;"></div>
                           </div>
-                          .daniel..
+                           {% include 'size.html' %}
                       </div>
-                      <div class="tab-pane container fade" id="FINISH">
+                      <div class="tab-pane container fade {{scriptfi}}" id="FINISH">
                            <div class="progress">
                                 <div class="progress-bar" style="width:100%;height:10%;"></div>
                            </div>
-                          ..merin.
+                          {% include 'finish.html' %}
                       </div>
                 </div>
-                <div class="summary row mb-5" style="margin-top:150px;">
 
-                    {% if summary.cloth_menu  %}
-                    <div class="text-center mx-auto container">
-                            <h1>CUSTOMIZATION SUMMARY :</h1>
-                        </div>
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
-
-                    </div>
-                    {% endif %}
-                    {% if summary.collar %}
-                         <div class="col-sm-3">
-                             <h6><img src="{{summary.collar.collar_image.url}}" style="width:20px;height:20px;"> Collar : {{summary.collar.collar_style}}</h6>
-                         </div>
-                    {% endif %}
-                    {% if summary.cuff %}
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.cuff.cuff_image.url}}" style="width:20px;height:20px;"> Cuff : {{summary.cuff.cuff_style}}</h6>
-
-                    </div>
-                    {% endif %}
-                    {% if summary.back %}
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.back.back_image.url}}" style="width:20px;height:20px;"> Back : {{summary.back.back_style}}</h6>
-
-                    </div>
-                    {% endif %}
-                    {% if summary.button %}
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
-
-                    </div>
-                    {% endif %}
-                    {% if summary.button_hole %}
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
-
-                    </div>
-                    {% endif %}
-                    {% if summary.pocket %}
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
-
-                    </div>
-                    {% endif %}
-                    {% if summary.front %}
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
-
-                    </div>
-                    {% endif %}
-                    {% if summary.size %}
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
-
-                    </div>
-                    {% endif %}
-                    {% if summary.standard_size %}
-                    <div class="col-sm-3">
-                        <h6><img src="{{summary.cloth_menu.image.url}}" style="width:20px;height:20px;"> Fabric : {{summary.cloth_menu.name}}</h6>
-
-                    </div>
-                    {% endif %}
-
-                </div>
             </div>
 
     </div>
 </div>
-
+{% load sweetify %}
+    {% sweetify %}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

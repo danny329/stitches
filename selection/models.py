@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Cuff(models.Model):
@@ -73,11 +74,6 @@ class ClothType(models.Model):
 
 #-------------------------------------------------------------
 
-class ShirtFit(models.Model):
-    shirt_fit_style = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.shirt_fit_style
 
 class StandardSize(models.Model):
     standard_size_style = models.CharField(max_length=50)
@@ -85,25 +81,6 @@ class StandardSize(models.Model):
     def __str__(self):
         return self.standard_size_style
 
-
-class Measurement(models.Model):
-    profile_name = models.CharField(max_length=25)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='userm', null=True, blank=True)
-    shirt_fit = models.ForeignKey(ShirtFit, on_delete=models.CASCADE, related_name='shirtfit')
-    neck = models.DecimalField(max_digits=5, decimal_places=2)
-    chest = models.DecimalField(max_digits=5, decimal_places=2)
-    waist = models.DecimalField(max_digits=5, decimal_places=2)
-    hips = models.DecimalField(max_digits=5, decimal_places=2)
-    shirt_length = models.DecimalField(max_digits=5, decimal_places=2)
-    shoulders = models.DecimalField(max_digits=5, decimal_places=2)
-    sleeve_length = models.DecimalField(max_digits=5, decimal_places=2)
-    cuff = models.DecimalField(max_digits=5, decimal_places=2)
-    arm_hole = models.DecimalField(max_digits=5, decimal_places=2)
-    biceps = models.DecimalField(max_digits=5, decimal_places=2)
-    height = models.DecimalField(max_digits=5, decimal_places=2)
-    weight = models.DecimalField(max_digits=5, decimal_places=2)
-    def __str__(self):
-        return self.profile_name
 
 class ClothMenu(models.Model):
     name = models.CharField(max_length=50)
@@ -128,17 +105,43 @@ class ClothMenu(models.Model):
 #-------------------------------------------------------------
 
 
+class ShirtFit(models.Model):
+    shirt_fit_style = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.shirt_fit_style
+
+class Measurement(models.Model):
+    profile_name = models.CharField(max_length=25)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='userm', null=True, blank=True)
+    shirt_fit = models.ForeignKey(ShirtFit, on_delete=models.CASCADE, related_name='shirtfit')
+    neck = models.DecimalField(max_digits=5, decimal_places=2)
+    chest = models.DecimalField(max_digits=5, decimal_places=2)
+    waist = models.DecimalField(max_digits=5, decimal_places=2)
+    hips = models.DecimalField(max_digits=5, decimal_places=2)
+    shirt_length = models.DecimalField(max_digits=5, decimal_places=2)
+    shoulders = models.DecimalField(max_digits=5, decimal_places=2)
+    sleeve_length = models.DecimalField(max_digits=5, decimal_places=2)
+    cuff = models.DecimalField(max_digits=5, decimal_places=2)
+    arm_hole = models.DecimalField(max_digits=5, decimal_places=2)
+    biceps = models.DecimalField(max_digits=5, decimal_places=2)
+    height = models.DecimalField(max_digits=5, decimal_places=2)
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
+    def __str__(self):
+        return self.profile_name
+
 class Design(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
-    cloth_menu = models.ForeignKey(ClothMenu, on_delete=models.CASCADE, related_name='clothmenu')
-    collar = models.ForeignKey(Collar, on_delete=models.CASCADE, related_name='collar')
-    cuff = models.ForeignKey(Cuff, on_delete=models.CASCADE, related_name='cuff')
-    back = models.ForeignKey(Back, on_delete=models.CASCADE, related_name='back')
-    button = models.ForeignKey(Button, on_delete=models.CASCADE, related_name='button')
-    button_hole = models.ForeignKey(ButtonHole, on_delete=models.CASCADE, related_name='buttonhole')
-    pocket = models.ForeignKey(Pocket, on_delete=models.CASCADE, related_name='pocket')
-    front = models.ForeignKey(Front, on_delete=models.CASCADE, related_name='front')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', null=True, blank=True)
+    cloth_menu = models.ForeignKey(ClothMenu, on_delete=models.CASCADE, related_name='clothmenu', null=True, blank=True)
+    collar = models.ForeignKey(Collar, on_delete=models.CASCADE, related_name='collar', null=True, blank=True)
+    cuff = models.ForeignKey(Cuff, on_delete=models.CASCADE, related_name='cuff', null=True, blank=True)
+    back = models.ForeignKey(Back, on_delete=models.CASCADE, related_name='back', null=True, blank=True)
+    button = models.ForeignKey(Button, on_delete=models.CASCADE, related_name='button', null=True, blank=True)
+    button_hole = models.ForeignKey(ButtonHole, on_delete=models.CASCADE, related_name='buttonhole', null=True, blank=True)
+    pocket = models.ForeignKey(Pocket, on_delete=models.CASCADE, related_name='pocket', null=True, blank=True)
+    front = models.ForeignKey(Front, on_delete=models.CASCADE, related_name='front', null=True, blank=True)
     size = models.ForeignKey(Measurement, on_delete=models.CASCADE, related_name='Measurement', null=True, blank=True)
+    shirtfit = models.ForeignKey(ShirtFit, on_delete=models.CASCADE, related_name='shirtfitd', null=True, blank=True)
     standard_size = models.ForeignKey(StandardSize, on_delete=models.CASCADE, related_name='standardsize', null=True, blank=True)
 
     def __str__(self):

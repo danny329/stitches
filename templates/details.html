@@ -1,0 +1,30 @@
+{% load static %}
+{% static "images" as baseUrl %}
+{% block details %}
+<section>
+    <div class="container">
+        <!-- selection categories nav pills-->
+                <ul class="nav nav-tabs w-75  justify-content-center p-2 mx-auto">
+                  <li class="nav-item "><a class="nav-link {{scriptdeb}}" data-toggle="tab" href="#BUTTON">BUTTON <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item"><a class="nav-link {{scriptdebu}}" data-toggle="tab" href="#BUTTONHOLE">BUTTONHOLE <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!--tab 1 - fabric-->
+                      <div class="tab-pane container fade {{scriptdeb}}" id="BUTTON">
+                        {% include 'button.html' %}
+
+                      </div>
+                    <!--tab 2 - details-->
+                      <div class="tab-pane container fade {{scriptdebu}}" id="BUTTONHOLE">
+
+                        {% include 'buttonhole.html' %}
+
+                      </div>
+
+                </div>
+    </div>
+    {% include 'custom_summary.html' %}
+</section>
+{% endblock %}

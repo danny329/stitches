@@ -9,3 +9,5 @@ def login(request):
 
 def signup(request):
     return render(request, 'signup.html')
+def cart(request):
+    return render(request, 'cart.html')
