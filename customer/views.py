@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from .models import UserDetails
-from selection.models import Design
+from selection.models import Orders
 
 # Create your views here.
 
