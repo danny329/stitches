@@ -135,18 +135,21 @@ def select(request, part=0):
                     print(design_summary.standard_size)
                 elif 'profile_select' in request.POST:
                     design_summary.size = Measurement.objects.get(pk=request.POST['profile_select'])
+                    if design_summary.standard_size is not None:
+                        design_summary.standard_size = None
+                    if design_summary.shirtfit is not None:
+                        design_summary.shirtfit = None
             except Exception as e:
                 print(e)
             measurement = MeasurementForm(request.POST)
             if measurement.is_valid():
+                measure = measurement.save(commit=False)
+                if request.user.is_authenticated:
+                    measure.user = User.objects.get(username=request.user)
                 if design_summary.standard_size is not None:
                     design_summary.standard_size = None
                 if design_summary.shirtfit is not None:
                     design_summary.shirtfit = None
-                measure = measurement.save(commit=False)
-                if request.user.is_authenticated:
-                    measure.user = User.objects.get(username=request.user)
-
                 design_summary.size = measure
                 measure.save()
                 print(design_summary.size)
@@ -202,7 +205,11 @@ def select(request, part=0):
 def addtocart(request):
     global design_summary
     global context
-    if design_summary.size is None and (design_summary.shirtfit is None and design_summary.standard_size is None):
+    if design_summary.size is None and design_summary.shirtfit is not None and design_summary.standard_size is None:
+        return redirect('/selection/select', context)
+    if design_summary.size is None and design_summary.shirtfit is None and design_summary.standard_size is not None:
+        return redirect('/selection/select', context)
+    if design_summary.size is None and design_summary.shirtfit is None and design_summary.standard_size is None:
         return redirect('/selection/select', context)
     if request.user.is_authenticated:
         design_summary.user = request.user

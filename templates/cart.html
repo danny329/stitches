@@ -19,96 +19,149 @@
 {% include 'navbar.html' %}
 <section class="container  border" style="margin-top:150px;">
     <div class="row text-center bg-light pt-2 border border-top-0 border-left-0 border-right-0">
-        <div class="col-sm-6"><h5>PRODUCT</h5></div>
-        <div class="col-sm-3"><h5>QUANTITY</h5></div>
-        <div class="col-sm-2"><h5>SUBTOTAL</h5></div>
-        <div class="col-sm-1"><h5></h5></div>
+        <div class="col-sm-6 "><h5>PRODUCT</h5></div>
+        <div class="col-sm-3" style="padding-left:75px;"><h5>QUANTITY</h5></div>
+        <div class="col-sm-2" style="padding-right:45px;"><h5>SUBTOTAL</h5></div>
+
     </div>
 
-        {% for item in cart %}
-        <div class="row m-2 pt-2 border border-left-0 border-right-0 border-bottom-0 ">
-            <div class="col-sm-6 ">
-                <div class="row ">
-                    <div class="col-sm-4 p-2 border"><img src="{{item.cloth_menu.image.url}}"></div>
-                    <div class="col-sm-8 p-2">
-                        <br>
-                        <div class="col-sm"><h6>{{item.cloth_menu.name}}</h6></div>
-                        <button class="col-sm btn btn-link border border-0 text-left" id="overlaytag{{forloop.counter}}" style="background:none;" ><h6>&nbsp;show custom details</h6></button>
-                        <!--    expand item summary      -->
-                        <div id="overlay{{forloop.counter}}"  style="position:fixed;display:none;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2;cursor:pointer;">
-                            <div class="container w-75 row bg-light mx-auto text-center p-5 rounded" style="margin-top:200px;opacity:0.99">
-                                <div class="col-sm-4">
-                                    {% if item.collar is not None %}
-                                        <h6>Collar:<span style="font-weight: normal;"> {{item.collar}} </span></h6>
-                                    {% else %}
-                                        <h6>Collar:<span style="font-weight: normal;"> {{item.cloth_menu.collar}} </span>(Default)</h6>
-                                    {% endif %}
-                                </div>
-                                <div class="col-sm-4">
-                                    {% if item.cuff is not None %}
-                                        <h6>Cuff:<span style="font-weight: normal;"> {{item.cuff}} </span></h6>
-                                    {% else %}
-                                        <h6>Cuff:<span style="font-weight: normal;"> {{item.cloth_menu.cuff}} </span>(Default)</h6>
-                                    {% endif %}
-                                </div>
+    {% for item in cart %}
+    <div class="row m-2 pt-2 border border-left-0 border-right-0 border-bottom-0 ">
+        <div class="col-sm-6 ">
+            <div class="row ">
+                <div class="col-sm-4 p-2 border"><img src="{{item.cloth_menu.image.url}}"></div>
+                <div class="col-sm-8 p-2">
+                    <br>
+                    <div class="col-sm"><h6>{{item.cloth_menu.name}}</h6></div>
+                    <button class="col-sm btn btn-link border border-0 text-left" id="overlaytag{{forloop.counter}}" style="background:none;" ><h6>&nbsp;show custom details</h6></button>
+                    <!--    expand item summary      -->
+                    <div id="overlay{{forloop.counter}}"  style="position:fixed;display:none;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2;cursor:pointer;">
+                        <div class="container w-75 row bg-light mx-auto text-center p-5 rounded" style="margin-top:200px;opacity:0.99">
+                            <div class="col-sm-4">
+                                {% if item.collar is not None %}
+                                    <h6>Collar:<span style="font-weight: normal;"> {{item.collar}} </span></h6>
+                                {% else %}
+                                    <h6>Collar:<span style="font-weight: normal;"> {{item.cloth_menu.collar}} </span>(Default)</h6>
+                                {% endif %}
                             </div>
+                            <div class="col-sm-4">
+                                {% if item.cuff is not None %}
+                                    <h6>Cuff:<span style="font-weight: normal;"> {{item.cuff}} </span></h6>
+                                {% else %}
+                                    <h6>Cuff:<span style="font-weight: normal;"> {{item.cloth_menu.cuff}} </span>(Default)</h6>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-4">
+                                {% if item.back is not None %}
+                                    <h6>Back:<span style="font-weight: normal;"> {{item.back}} </span></h6>
+                                {% else %}
+                                    <h6>Back:<span style="font-weight: normal;"> {{item.cloth_menu.back}} </span>(Default)</h6>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-4">
+                                {% if item.button is not None %}
+                                    <h6>button:<span style="font-weight: normal;"> {{item.button}} </span></h6>
+                                {% else %}
+                                    <h6>button:<span style="font-weight: normal;"> {{item.cloth_menu.button}} </span>(Default)</h6>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-4">
+                                {% if item.button_hole is not None %}
+                                    <h6>button_hole:<span style="font-weight: normal;"> {{item.button_hole}} </span></h6>
+                                {% else %}
+                                    <h6>button_hole:<span style="font-weight: normal;"> {{item.cloth_menu.button_hole}} </span>(Default)</h6>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-4">
+                                {% if item.pocket is not None %}
+                                    <h6>pocket:<span style="font-weight: normal;"> {{item.pocket}} </span></h6>
+                                {% else %}
+                                    <h6>pocket:<span style="font-weight: normal;"> {{item.cloth_menu.pocket}} </span>(Default)</h6>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-4">
+                                {% if item.front is not None %}
+                                    <h6>front:<span style="font-weight: normal;"> {{item.front}} </span></h6>
+                                {% else %}
+                                    <h6>front:<span style="font-weight: normal;"> {{item.cloth_menu.front}} </span>(Default)</h6>
+                                {% endif %}
+                            </div>
+                            {% if item.size is not None %}
+                            <div class="col-sm-4">
+                                    <h6>size:<span style="font-weight: normal;"> {{item.size}} </span></h6>
+                            </div>
+                            {% endif %}
+                            {% if item.size is None %}
+                            {% if item.shirtfit is not None %}
+                            <div class="col-sm-4">
+                                    <h6>shirtfit:<span style="font-weight: normal;"> {{item.shirtfit}} </span></h6>
+                            </div>
+                            {% endif %}
+                            {% if item.standard_size is not None %}
+                                <div class="col-sm-4">
+                                    <h6>standard_size:<span style="font-weight: normal;"> {{item.standard_size}} </span></h6>
+                            {% else %}
+                                 <div class="col-sm-4">
+                                    <h6>standard_size:<span style="font-weight: normal;"> {{item.cloth_menu.standard_size}} </span>(Default)</h6>
+
+                            {% endif %}
+                                </div>
+                            {% endif %}
                         </div>
-                        <div class="col-sm"><h6>Color :<span style="font-weight: normal;"> {{item.cloth_menu.color}} </span> | Measurement : <span style="font-weight: normal;">
-                        {% if item.standard_size is not None %}
-                                {{item.standard_size}}
-                        {% endif %}
-                        {% if item.size is not None %}
-                                {{item.size.profile_name}}
-                        {% endif %}
-                        </span></h6></div>
                     </div>
+                    <div class="col-sm"><h6>Color :<span style="font-weight: normal;"> {{item.cloth_menu.color}} </span> | Measurement : <span style="font-weight: normal;">
+                    {% if item.standard_size is not None %}
+                            {{item.standard_size}}
+                    {% endif %}
+                    {% if item.size is not None %}
+                            {{item.size.profile_name}}
+                    {% endif %}
+                    </span></h6></div>
                 </div>
             </div>
-            <div class="col-sm-3 text-center p-3 ">
-                <form action="/cart/" method="post">{% csrf_token%}
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-3">
-                            <button name="clothid_minus" class="btn btn-link border border-0" value="{{item.pk}}" style="width:50px;height:50px;outline:none;">
-                                <img name="minus"  src="https://img.icons8.com/nolan/24/000000/minus.png">
-                            </button>
-                        </div>
-                        <div class="col-3 mt-3">{{item.quantity}}</div>
-                        <div class="col-2">
-                            <button name="clothid_plus" class="btn btn-link " value="{{item.pk}}" style="width:50px;height:50px;background: none;">
-                                <img name="add"  src="https://img.icons8.com/nolan/24/000000/plus.png">
-                            </button>
-                        </div>
-                       <div class="col-3"></div>
-                   </div>
-                </form>
-            </div>
-            <div class="col-sm-2 text-center p-3">{{item.subtotal}}</div>
-            <div class="col-sm-1 p-3">
-                 <form action="/cart/" method="post">{% csrf_token%}
-                      <button name="clothid_delete" class="btn btn-link " value="{{item.pk}}" style="width:50px;height:50px;background: none;">
-                          <img name="delete" src="https://img.icons8.com/color/24/000000/delete-forever.png">
-                      </button>
-                </form>
-            </div>
         </div>
-
-        {% endfor %}
-
-        <div class="row m-2 flex border border-bottom-0 border-left-0 border-right-0">
-            <div class="col-sm-9 text-right p-1">Total</div>
-            <div class="col-sm-2 text-center p-1">{{total}}</div>
-            <div class="col-sm-9 text-right p-1">Coupon</div>
-            <div class="col-sm-2 text-center p-1">value</div>
-            <div class="col-sm-9 text-right p-1">Shipping</div>
-            <div class="col-sm-2 text-center p-1">value</div>
-            <div class="col-sm-9 text-right p-1">Store Credit</div>
-            <div class="col-sm-2 text-center p-1">value</div>
-            <div class="col-sm-9 text-right p-1">Grand Total</div>
-            <div class="col-sm-2 text-center p-1">value</div>
+        <div class="col-sm-3 text-center p-3 ">
+            <form action="/cart/" method="post">{% csrf_token%}
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-3">
+                        <button name="clothid_minus" class="btn btn-link border border-0" value="{{item.pk}}" style="width:50px;height:50px;outline:none;">
+                            <img name="minus"  src="https://img.icons8.com/nolan/24/000000/minus.png">
+                        </button>
+                    </div>
+                    <div class="col-3 mt-3">{{item.quantity}}</div>
+                    <div class="col-2">
+                        <button name="clothid_plus" class="btn btn-link " value="{{item.pk}}" style="width:50px;height:50px;background: none;">
+                            <img name="add"  src="https://img.icons8.com/nolan/24/000000/plus.png">
+                        </button>
+                    </div>
+                   <div class="col-3"></div>
+               </div>
+            </form>
         </div>
+        <div class="col-sm-2 text-center " style="padding-left:20px;padding-top:30px;">₹&nbsp;{{item.subtotal}}</div>
+        <div class="col-sm-1 p-3">
+             <form action="/cart/" method="post">{% csrf_token%}
+                  <button name="clothid_delete" class="btn btn-link " value="{{item.pk}}" style="width:50px;height:50px;background: none;">
+                      <img name="delete" src="https://img.icons8.com/color/24/000000/delete-forever.png">
+                  </button>
+            </form>
+        </div>
+    </div>
+    {% empty %}
+            <p class="mx-auto text-center">Sorry, no item in cart.</p>
+    {% endfor %}
 
+    <div class="row m-2 flex border border-bottom-0 border-left-0 border-right-0">
+
+        <div class="col-sm-9 text-right p-1"><h4>Grand Total</h4></div>
+        <div class="col-sm-2 text-center p-1"><h4>₹&nbsp;{{total}}</h4></div>
+    </div>
 </section>
+<div class="container text-center mx-auto mt-3">
+        <a class="btn btn-secondary  mr-5 pt-2" href="/order/checkout/"><h5 style="color:white;">Checkout</h5></a>
+        <a class="btn btn-secondary pt-2" href="/selection/select/"><h5 style="color:white;">Continue Shopping</h5></a>
+</div>
 <script>
 var arr = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ];
 $.each( arr, function( index, value ){

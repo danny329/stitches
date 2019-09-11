@@ -12,7 +12,7 @@ def login(request):
 def signup(request):
     return render(request, 'signup.html')
 def cart(request):
-    if request.user.is_authenticated:
+
         cart = Orders.objects.filter(user__username=request.user, status__status='INCART').order_by('pk')
         total = 0
         if request.method == 'POST':
@@ -37,8 +37,9 @@ def cart(request):
                 changecart.delete()
         for item in cart:
             total = total + item.subtotal
+
         context = {'cart': cart,'total': total}
         return render(request, 'cart.html', context)
-    else:
-        return redirect('/')
+
+
 

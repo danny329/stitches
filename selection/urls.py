@@ -7,7 +7,7 @@ urlpatterns = [
     path('select/', views.select, name='select'),
     path('select/<slug:part>/', views.select, name='select'),
     path('addtocart/', views.addtocart, name='addtocart'),
-    path('measure/', views.mes, name='addtocart'),
+
 
 
 

@@ -1,0 +1,48 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'img/favicon.png'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/opensans-font.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/roboto-font.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'%}">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <title>Document</title>
+   <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+</script>
+</head>
+
+{% include 'navbar.html' %}
+
+<section>
+	<div class="mx-auto text-center" style="margin-top:100px;"><h1>CHECKOUT</h1></div>
+	<div class="row text-center w-75 mx-auto">
+		<div class="col-4  ">
+			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/1-c.png"></div>
+			<div class="col-6 mx-auto"><h6>Review Order</h6></div>
+		</div>
+		<div class="col-4  ">
+			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/2-c.png"></div>
+			<div class="col-6 mx-auto" style=" padding-right:8px;"><h6>Shipping Details</h6></div>
+		</div>
+		<div class="col-4  ">
+			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/3-c.png"></div>
+			<div class="col-6 mx-auto" ><h6>Payment</h6></div>
+		</div>
+	</div>
+	<div class="container-fluid" >
+    	<div class="jumbotron w-75  justify-content-center p-2 mx-auto" >
+			{% if request.user.is_authenticated %}
+				{% include 'cart.html'%}
+			{% else %}
+				{% include 'login_page.html'%}
+			{% endif %}
+		</div>
+	</div>
+</section>
+

@@ -24,6 +24,8 @@ urlpatterns = [
     path('', include('homepage.urls')),
     path('customer/', include('customer.urls')),
     path('selection/', include('selection.urls')),
+    path('order/', include('order.urls')),
+    path('payment/', include('payment.urls')),
 ]
 if settings.DEBUG :
     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
