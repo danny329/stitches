@@ -33,15 +33,34 @@
                     <div class="col-sm-8 p-2">
                         <br>
                         <div class="col-sm"><h6>{{item.cloth_menu.name}}</h6></div>
-                        <div class="col-sm"><h6>show custom details</h6></div>
-                        <div class="col-sm"><h6>Color : {{item.cloth_menu.color}} | Measurement :
+                        <button class="col-sm btn btn-link border border-0 text-left" id="overlaytag{{forloop.counter}}" style="background:none;" ><h6>&nbsp;show custom details</h6></button>
+                        <!--    expand item summary      -->
+                        <div id="overlay{{forloop.counter}}"  style="position:fixed;display:none;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2;cursor:pointer;">
+                            <div class="container w-75 row bg-light mx-auto text-center p-5 rounded" style="margin-top:200px;opacity:0.99">
+                                <div class="col-sm-4">
+                                    {% if item.collar is not None %}
+                                        <h6>Collar:<span style="font-weight: normal;"> {{item.collar}} </span></h6>
+                                    {% else %}
+                                        <h6>Collar:<span style="font-weight: normal;"> {{item.cloth_menu.collar}} </span>(Default)</h6>
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-4">
+                                    {% if item.cuff is not None %}
+                                        <h6>Cuff:<span style="font-weight: normal;"> {{item.cuff}} </span></h6>
+                                    {% else %}
+                                        <h6>Cuff:<span style="font-weight: normal;"> {{item.cloth_menu.cuff}} </span>(Default)</h6>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm"><h6>Color :<span style="font-weight: normal;"> {{item.cloth_menu.color}} </span> | Measurement : <span style="font-weight: normal;">
                         {% if item.standard_size is not None %}
                                 {{item.standard_size}}
                         {% endif %}
                         {% if item.size is not None %}
                                 {{item.size.profile_name}}
                         {% endif %}
-                        </h6></div>
+                        </span></h6></div>
                     </div>
                 </div>
             </div>
@@ -90,3 +109,23 @@
         </div>
 
 </section>
+<script>
+var arr = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ];
+$.each( arr, function( index, value ){
+
+    $(document).ready(function() {
+        $("#overlaytag"+value).click(function() {
+            $("#overlay"+value).css({"display":"block"});
+        });
+
+    });
+    $(document).ready(function() {
+        $("#overlay"+value).click(function() {
+            $("#overlay"+value).css({"display":"none"});
+        });
+
+    });
+});
+
+
+</script>

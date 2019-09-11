@@ -1,11 +1,10 @@
 from django.shortcuts import render,redirect, reverse, HttpResponse
 from .models import Color,Pattern,ClothType, ClothMenu, Orders , Collar, Cuff, ButtonHole,Button, Back,Front, Pocket, ShirtFit, Measurement,StandardSize,OrderStatusCode
 from customer.forms import MeasurementForm
-
+from django.contrib.auth.models import User
 # Create your views here.
 design_summary = Orders()
 context = {}
-measurement = MeasurementForm()
 def selectionpage(request):
     return render(request, 'selectionpage.html')
 
@@ -14,22 +13,30 @@ def selectionpage(request):
 
 def select(request, part=0):
     #to view list of already existing datas
-    color = Color.objects.all()
-    pattern = Pattern.objects.all()
-    clothtype = ClothType.objects.all()
-    clothmenu = ClothMenu.objects.all()
-    collar = Collar.objects.all()
-    cuff = Cuff.objects.all()
-    back = Back.objects.all()
-    front = Front.objects.all()
-    pocket = Pocket.objects.all()
-    button = Button.objects.all()
-    buttonhole = ButtonHole.objects.all()
-    standardsize = StandardSize.objects.all()
-    shirtfit = ShirtFit.objects.all()
+    try:
 
+        color = Color.objects.all()
+        pattern = Pattern.objects.all()
+        clothtype = ClothType.objects.all()
+        clothmenu = ClothMenu.objects.all()
+        collar = Collar.objects.all()
+        cuff = Cuff.objects.all()
+        back = Back.objects.all()
+        front = Front.objects.all()
+        pocket = Pocket.objects.all()
+        button = Button.objects.all()
+        buttonhole = ButtonHole.objects.all()
+        standardsize = StandardSize.objects.all()
+        shirtfit = ShirtFit.objects.all()
+        measurement = MeasurementForm()
+        list_of_measure = None
+    except Exception as e:
+        print(e)
     global design_summary
     global context
+    if request.user.is_authenticated:
+        list_of_measure = Measurement.objects.filter(user__username=request.user)
+
     rest = []
     if request.method == 'GET':
         try:
@@ -46,10 +53,18 @@ def select(request, part=0):
             rest.clear()
             for i in range(1, 6 - (count % 6)):
                 rest.append(i)
-            global measurement
+
         except:
             print('error get')
-        context = {'color': color, 'pattern': pattern, 'clothtype': clothtype, 'pocket': pocket, 'collar': collar, 'back': back, 'front': front, 'cuff': cuff, 'button': button, 'buttonhole': buttonhole, 'standardsize': standardsize, 'shirtfit': shirtfit, 'clothmenu': clothmenu, 'count': count, 'rest': rest, 'summary': design_summary, 'measurement': measurement}
+
+
+        context = {'color': color, 'pattern': pattern, 'clothtype': clothtype, 'pocket': pocket, 'collar': collar, 'back': back, 'front': front, 'cuff': cuff,
+                   'button': button, 'buttonhole': buttonhole, 'standardsize': standardsize, 'shirtfit': shirtfit, 'clothmenu': clothmenu, 'count': count,
+                   'rest': rest, 'summary': design_summary, 'measurement': measurement, 'list_of_measure':list_of_measure}
+        # if request.user.is_authenticated and Measurement.objects.get(user__username=request.user):
+        #     instance = Measurement.objects.get(user__username=request.user)
+        #     existing_measurement = MeasurementForm(instance=instance)
+        #     context['existing_measurement']: existing_measurement
         context['scriptf'] = 'show active'
         context['scriptdco'] = 'show active'
         context['scriptdeb'] = 'show active'
@@ -58,7 +73,6 @@ def select(request, part=0):
 
     if request.method == 'POST':
         try:
-            measurement = MeasurementForm(request.POST)
             # for selection search submit begin -->
             if 'pattern' in request.POST:
                 patterns = request.POST['pattern']
@@ -119,24 +133,33 @@ def select(request, part=0):
                         design_summary.size = None
                     design_summary.standard_size = StandardSize.objects.get(standard_size_style=request.POST['Standard_size'])
                     print(design_summary.standard_size)
-                    # design_summary.user = request.user
-                elif MeasurementForm(request.POST):
-                    print('here')
-                    measurement = MeasurementForm(request.POST)
-                    if measurement.is_valid():
-                        if design_summary.standard_size:
-                            design_summary.standard_size = None
-                        if design_summary.shirtfit:
-                            design_summary.shirtfit = None
-                        measure = measurement.save(commit=False)
-                        design_summary.size = measure
-                        measure.save()
+                elif 'profile_select' in request.POST:
+                    design_summary.size = Measurement.objects.get(pk=request.POST['profile_select'])
             except Exception as e:
                 print(e)
-            context = {'color': color, 'pattern': pattern, 'clothtype': clothtype, 'pocket': pocket, 'collar': collar,'back': back, 'front': front, 'cuff': cuff, 'button': button, 'buttonhole': buttonhole,'standardsize': standardsize, 'shirtfit': shirtfit, 'clothmenu': clothmenu, 'count': count,'rest': rest, 'summary': design_summary, 'measurement': measurement}
+            measurement = MeasurementForm(request.POST)
+            if measurement.is_valid():
+                if design_summary.standard_size is not None:
+                    design_summary.standard_size = None
+                if design_summary.shirtfit is not None:
+                    design_summary.shirtfit = None
+                measure = measurement.save(commit=False)
+                if request.user.is_authenticated:
+                    measure.user = User.objects.get(username=request.user)
+
+                design_summary.size = measure
+                measure.save()
+                print(design_summary.size)
+
+            context = {'color': color, 'pattern': pattern, 'clothtype': clothtype, 'pocket': pocket, 'collar': collar,'back': back, 'front': front, 'cuff': cuff,
+                       'button': button, 'buttonhole': buttonhole,'standardsize': standardsize, 'shirtfit': shirtfit, 'clothmenu': clothmenu, 'count': count,
+                       'rest': rest, 'summary': design_summary, 'measurement': measurement, 'list_of_measure':list_of_measure }
+
             # end  selection summary
         except Exception as e:
             print(e)
+
+
         if part == 'FABRIC':
             context['scriptf'] = 'show active'
             context['scriptdco'] = 'show active'
@@ -193,3 +216,13 @@ def addtocart(request):
         print('hello to login page')
         print(context)
         return render(request, 'login_page.html', context)
+def mes(request):
+    measurement = MeasurementForm()
+    if request.method == 'POST':
+        measurement = MeasurementForm(request.POST)
+        measure = measurement.save(commit=False)
+        if request.user.is_authenticated:
+            measure.user = User.objects.get(username=request.user)
+        measure.save()
+    context={'measurement': measurement}
+    return render(request,'measurement.html',context)

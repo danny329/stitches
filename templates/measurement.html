@@ -1,6 +1,6 @@
 {% load crispy_forms_tags %}
 {% block measurement %}
-<h2>New measurement</h2>
+
     <form method="POST" action="/selection/select/SIZE/" class="post-form">{% csrf_token %}
         <div class="row">
             <div class="col-sm-3">{{ measurement.profile_name|as_crispy_field  }}</div>

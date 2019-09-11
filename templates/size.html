@@ -9,13 +9,34 @@
 <div class="container">
     <div class="row text-center mx-auto" >
         <div class="col-sm-12 p-3  mb-3" >
-        {% if user.is_authenticated %}
             <h5 id="show_anchor" class="btn-light mx-auto text-center pt-3" style="width:450px;height:50px;">Custom Measurement</h5>
-            <div id='manual' class="col-sm-12 "> {% include 'measurement.html' %}</div>
-        {% endif %}
+
+            <div id='manual' class="col-sm-12 ">
+                <h2>New measurement</h2>
+                {% include 'measurement.html' %}
+            </div>
         </div>
         <div class="col-sm-12 mb-3" style="width:50%;">
+        {% if user.is_authenticated %}
+            <h5 id="show_anchor1" class="btn-light mx-auto text-center pt-3" style="width:450px;height:50px;">Existing Measurement</h5>
+            <div id='manual1' class="col-sm-12 ">
+                 <form action="/selection/select/SIZE/" name="sendform1" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row col text-center">
+                            <div class="form-wrapper  col-sm-4">
+                                <select name="profile_select" id="profile_select" class="form-control text-center">
+                                    <option value=""  disabled selected>Profile Name</option>
+                                    {% for val in list_of_measure %}
+                                    <option value="{{val.pk}}">{{val}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                 </form>
+            </div>
+        {% else %}
             <h5>login to use previously added measurement</h5>
+        {% endif %}
         </div>
         <div class="row mx-auto p-3 btn-light" style="width:50%;">
             <h5 class="col-sm-12">I WANT TO ORDER A STANDARD SIZE.</h5>
@@ -69,6 +90,23 @@ $(document).ready(function() {
             });
 
         });
+
+ $(document).ready(function() {
+                $("#manual1").hide();
+   });
+
+ $(document).ready(function() {
+            $("#show_anchor1").click(function() {
+                $("#manual1").toggle();
+            });
+
+        });
+
+  $(document).ready(function() {
+   $('#profile_select').change(function(){
+        $('form[name=sendform1]').submit();
+   });
+  });
 
 </script>
 {% endblock %}
