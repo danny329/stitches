@@ -2505,7 +2505,7 @@ ul {
 
 /* line 7, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_menu.scss */
 .main_menu .navbar {
-  padding: 12px 0px;
+  padding: 4px 0px;
 }
 
 /* line 11, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_menu.scss */
@@ -2589,8 +2589,9 @@ ul {
   position: fixed;
   z-index: 9999 !important;
   width: 100%;
-  background-color: #e614ff;
+  background-color: #7c1a88;
   top: 0;
+  max-height:80px;
 }
 
 /* line 94, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_menu.scss */

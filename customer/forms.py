@@ -14,13 +14,29 @@ class UserDetailForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.id:
+            self.fields['username'].widget.attrs['readonly'] = True
+            self.fields['first_name'].widget.attrs['readonly'] = True
+            self.fields['last_name'].widget.attrs['readonly'] = True
+            self.fields['email'].widget.attrs['readonly'] = True
+
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
 
 
 class UserExtend(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(UserExtend, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.id:
+            self.fields['address'].widget.attrs['readonly'] = True
+            self.fields['phone'].widget.attrs['readonly'] = True
+
     class Meta:
         model = UserDetails
-        fields = ['address', 'phone', 'gender']
+        fields = ['address', 'phone']
 

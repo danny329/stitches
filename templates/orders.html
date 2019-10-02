@@ -3,7 +3,7 @@
 {% include 'com.html' %}
 {% include 'navbar.html' %}
 
-<div class="container border mx-auto w-50 " style="margin-top:100px;">
+<div class="container border mx-auto w-75 " style="margin-top:100px;">
     <div class="col-sm-12 mt-3 mb-3"><h6 class="text-center">---Orders in progress---</h6></div>
     {% for orderslist in allorders %}
     <div class="bg-light border mt-2">
@@ -11,17 +11,17 @@
         {% for itemslist in allordersitemconfirmed %}
             {% for item in orderslist.order.all %}
                 {% if itemslist.pk == item.pk %}
-                    <div class="col-sm-7 mb-3 mx-auto ">
-                    <div class="row  border mx-auto">
-                        <div class=" mt-1 mb-1 col-sm-4 p-0">
-                            <img src="{{item.cloth_menu.image.url}}" width="110px" height="135px"  alt="image">
+                    <div class="col-sm-10 mb-3 mx-auto ">
+                    <div class="row  border mx-auto pl-1">
+                        <div class=" my-1 col-sm-4 border p-0 ">
+                            <img src="{{item.cloth_menu.image.url}}" width="140px" height="135px"  alt="image">
                         </div>
                         <div class="col-sm-8 bg-light">
                             <h6 class="mt-1 text-uppercase font-weight-bold">{{item.cloth_menu.name}}</h6>
                             <h6>QTY : {{item.quantity}}</h6>
                             <h6>PRICE : {{item.subtotal}}</h6>
                             <h6>DOP : {{orderslist.date}}</h6>
-                            <h6 class="bg-warning">Status : {{item.status}}</h6>
+                            <h6 class="bg-warning p-2">Status : {{item.status}}</h6>
                         </div>
                     </div>
                 </div>

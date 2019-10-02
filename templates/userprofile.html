@@ -6,21 +6,76 @@
 <head> 
 	<title>User Profile</title>
 </head> 
-<div class="container" style="margin-top:120px;">
-	<div class="row bg-light">
-		<div class="col-sm-3">{{ formuser.username|as_crispy_field  }}</div>
-		<div class="col-sm-3">{{ formuser.first_name|as_crispy_field  }}</div>
-		<div class="col-sm-3">{{ formuser.last_name|as_crispy_field  }}</div>
-		<div class="col-sm-3">{{ formuser.email|as_crispy_field  }}</div>
+<section class="bg-light" style="margin-top:120px;">
+	<div class=" row container-fluid p-3">
+		<div class="col-3">
+			<div class="shadow-sm pl-3 pt-3 pb-0 mb-3 bg-white rounded">
+				<div class="row">
+					<div class="col-sm-3 m-0 pr-0"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50"><defs><path id="a" d="M50 0v50H0V0z"/><path id="c" d="M0 50h50V0H0z"/></defs><g fill="none" fill-rule="evenodd"><path fill="#EBCFB9" d="M23.05 39.873h4.02v-5.357h-4.02z"/><mask id="b" fill="#fff"><use xlink:href="#a"/></mask><path fill="#FFE11B" d="M50 25c0 13.807-11.192 25-25 25C11.193 50 0 38.807 0 25S11.193 0 25 0c13.808 0 25 11.193 25 25" mask="url(#b)"/><path fill="#FADDC5" d="M11.418 45.78s-.166-5.062 5.118-7.024c1.96-.727 5.776-.654 8.393-.654 2.54 0 7.468-.107 9.404.596 5.435 1.97 4.635 7.07 4.635 7.07s-4.83 4.06-14.04 4.06c-10.832 0-13.512-4.047-13.512-4.047"/><path fill="#47C3CF" d="M11.418 45.78s-.166-5.062 5.118-7.024c1.106-.41 2.802-.565 4.54-.624 0 0 .088 4.137 4.252 4.137 4.184 0 4.318-4.14 4.318-4.14 1.866.056 3.682.202 4.688.568 5.435 1.97 4.635 7.07 4.635 7.07s-4.83 4.06-14.04 4.06c-10.832 0-13.512-4.047-13.512-4.047"/><mask id="d" fill="#fff"><use xlink:href="#c"/></mask><path fill="#FADDC5" d="M23.27 39.873h4.02v-5.357h-4.02z" mask="url(#d)"/><path fill="#D3B8A3" d="M23.257 35.083h4.03s-.54 1.764-2.008 1.774c-1.468.01-2.023-1.774-2.023-1.774" mask="url(#d)"/><path fill="#FADDC5" d="M36.154 23.76c0 6.41-5.027 11.608-11.224 11.608-6.2 0-11.226-5.197-11.226-11.61 0-6.41 5.027-11.61 11.226-11.61 6.197 0 11.224 5.2 11.224 11.61" mask="url(#d)"/><path fill="#FFF" d="M26.64 32.27s-.163 1.294-1.28 1.294c-1.116 0-1.46-1.295-1.31-1.295" mask="url(#d)"/><path fill="#A56826" d="M18.204 19.192s1.665 5.688 7.124 4.148c7.347-2.073 10.62 2.023 10.826.715v-.296s1.81-13.04-11.225-13.04c-13.036 0-11.225 13.04-11.225 13.04s3.903-.937 4.5-4.568" mask="url(#d)"/></g></svg></div>
+					<div class="col-sm-9 mt-1 p-1">
+						<h6>Hello,</h6>
+						<h6>{{request.user.first_name}}&nbsp;{{request.user.last_name}}</h6>
+					</div>
+				</div>
+			</div>
+			<div class="shadow-sm p-2 mb-3 bg-white rounded ">
+				<div class="list-group text-justify " id="myList" role="tablist">
+				  <a class="list-group-item list-group-item-action border-0 rounded" data-toggle="list" href="#home" role="tab">Profile</a>
+				  <a class="list-group-item list-group-item-action border-0 rounded" data-toggle="list" href="#profile" role="tab">Measurement</a>
+				  <a class="list-group-item list-group-item-action border-0 rounded" data-toggle="list" href="#messages" role="tab">Messages</a>
+				  <a class="list-group-item list-group-item-action border-0 rounded"  href="/order/orders/" >Orders</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-9">
+			<div class="shadow-sm p-2 mb-3 bg-white rounded ">
+				<div class="tab-content">
+				  <div class="tab-pane active " id="home" role="tabpanel">
+					  <div class="row p-3">
+						  <div class="col-sm-12"><h5>Personal Info</h5></div>
+						  <div class="col-sm-3">{{ formuser.first_name|as_crispy_field  }}</div>
+						  <div class="col-sm-3">{{ formuser.last_name|as_crispy_field  }}</div>
+						  <div class="col-sm-6"></div>
+						  <div class="col-sm-12"><h5>Email Address & Username </h5></div>
+						  <div class="col-sm-3">{{ formuser.username|as_crispy_field  }}</div>
+						  <div class="col-sm-3">{{ formuser.email|as_crispy_field  }}</div>
+						  <div class="col-sm-6"></div>
+						  <div class="col-sm-12"><h5>Address & Phone Number </h5></div>
+						  <div class="col-sm-3">{{ formuserextend.phone|as_crispy_field  }}</div>
+						  <div class="col-sm-6">{{ formuserextend.address|as_crispy_field  }}</div>
+					  </div>
+				  </div>
+				  <div class="tab-pane" id="profile" role="tabpanel">
+					  <form method = "post" class="w-100" action="/customer/userprofile/" >{% csrf_token %}
+					  	<div class="row p-3">
+
+								<div class="col-sm-12 mb-3"><h5>Personal Measurements</h5></div>
+								<div class="col-sm-4">{{ formmeasuremeasurement.profile_name|as_crispy_field  }}</div>
+								<div class="col-sm-12 mt-3"><h5>Body Measurements</h5></div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.shirt_fit|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.neck|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.chest|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.waist|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.hips|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.shirt_length|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.shoulders|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.sleeve_length|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.cuff|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.arm_hole|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.biceps|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.height|as_crispy_field  }}</div>
+								<div class="col-sm-3">{{ formmeasuremeasurement.weight|as_crispy_field  }}</div>
+								<button type="submit" class="btn btn-sm btn-success col-sm-3 " style="height:40px; margin-top:33px;">Save</button>
+						</div>
+					  </form>
+				  </div>
+				  <div class="tab-pane" id="messages" role="tabpanel"><h4>Notifications</h4></div
+				</div>
+			</div>
+		</div>
+
 	</div>
-	<form method = "post" action="/customer/userprofile/" enctype="multipart/form-data">
-		{% csrf_token %}
 
-
-		{{ formuserextend.as_p }}
-		{{ formmeasuremeasurement.as_p }}
-		<button type="submit">Save</button>
-	</form>
-</div>
+</section>
 
 

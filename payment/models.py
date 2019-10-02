@@ -11,3 +11,6 @@ class OrderHistory(models.Model):
     def __str__(self):
         return str(self.user.username + ' ' + self.price)
 
+    def orderlist(self):
+        return ",".join([str(p) for p in self.order.all()])
+

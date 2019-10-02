@@ -63,9 +63,9 @@ def userprofile(request):
     try:
         if request.user.is_authenticated:
             if request.method == 'POST':
-                formuser = UserForm(request.POST,instance=User.objects.get(pk=request.user))
-                formuserextend = UserExtend(request.POST,instance=UserDetails.objects.get(userref=request.user))
-                formmeasuremeasurement = MeasurementForm(request.POST,instance=Measurement.objects.get(user=request.user))
+                formuser = UserForm(request.POST, instance=User.objects.get(pk=request.user.pk))
+                formuserextend = UserExtend(request.POST, instance=UserDetails.objects.get(userref=request.user))
+                formmeasuremeasurement = MeasurementForm(request.POST, instance=Measurement.objects.get(user=request.user))
 
                 if formuser.is_valid() and formuserextend.is_valid() and formmeasuremeasurement.is_valid():
                     formuser.save(commit=False)
@@ -73,8 +73,8 @@ def userprofile(request):
                     formmeasuremeasurement.save()
                     print("success")
             else:
-                formuser = UserForm()
-                formuserextend = UserExtend()
+                formuser = UserForm(instance=User.objects.get(pk=request.user.pk))
+                formuserextend = UserExtend(instance=UserDetails.objects.get(userref=request.user))
                 formmeasuremeasurement = MeasurementForm()
             context = {'formuser': formuser, 'formuserextend': formuserextend, 'formmeasuremeasurement': formmeasuremeasurement}
             return render(request, 'userprofile.html', context)
