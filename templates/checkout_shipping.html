@@ -1,0 +1,14 @@
+{% load crispy_forms_tags %}
+{% load static %}
+{% static "images" as baseUrl %}
+<div class="col mx-auto bg-light">
+    <form method="POST" action="/order/checkout/shipping/" class="post-form">{% csrf_token %}
+    <div class="row w-75 mx-auto">
+        <div class="col-sm-12 ">{{ shippingdetail.address|as_crispy_field  }}</div>
+        <div class="col-sm-6 mx-auto">{{ shippingdetail.phone|as_crispy_field  }}</div>
+        <div class="col-sm-6"></div>
+        <input type="submit" class="save btn btn-sm mx-auto bg-success w-25 mb-3"/>
+    </div>
+
+    </form>
+</div>

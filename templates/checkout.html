@@ -22,26 +22,35 @@
 <section>
 	<div class="mx-auto text-center" style="margin-top:100px;"><h1>CHECKOUT</h1></div>
 	<div class="row text-center w-75 mx-auto">
-		<div class="col-4  ">
+		<ul class="nav nav-pills w-100  justify-content-center p-1 mx-auto">
+
+
+		<li class="col-4 nav-item "><a class="nav-link " data-toggle="pill" href="/order/checkout/review/">
 			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/1-c.png"></div>
-			<div class="col-6 mx-auto"><h6>Review Order</h6></div>
-		</div>
-		<div class="col-4  ">
+			<div class="col-6 mx-auto"><h6>Review Order</h6></div></a>
+		</li>
+		<li class="col-4  nav-item"><a class="nav-link " data-toggle="pill" href="/order/checkout/shipping/">
 			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/2-c.png"></div>
-			<div class="col-6 mx-auto" style=" padding-right:8px;"><h6>Shipping Details</h6></div>
-		</div>
-		<div class="col-4  ">
+			<div class="col-6 mx-auto" style=" padding-right:8px;"><h6>Shipping Details</h6></div></a>
+		</li>
+		<li class="col-4 nav-item "><a class="nav-link " data-toggle="pill" href="/order/checkout/payment/">
 			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/3-c.png"></div>
-			<div class="col-6 mx-auto" ><h6>Payment</h6></div>
-		</div>
+			<div class="col-6 mx-auto" ><h6>Payment</h6></div></a>
+		</li>
+			</ul>
 	</div>
-	<div class="container-fluid" >
-    	<div class="jumbotron w-75  justify-content-center p-2 mx-auto" >
-			{% if request.user.is_authenticated %}
-				{% include 'cart.html'%}
-			{% else %}
-				{% include 'login_page.html'%}
-			{% endif %}
+	<div class="container-fluid tab-content " >
+
+		<div class="tab-pane w-75 mx-auto justify-content-center jumbotron fade {{review}}" id="REVIEW">
+                            {% include 'checkout_review.html' %}
+		</div>
+
+		<div class="tab-pane w-75 mx-auto justify-content-center jumbotron fade {{shipping}} " id="SHIPPING">
+                            {% include 'checkout_shipping.html' %}
+		</div>
+
+		<div class="tab-pane w-75 mx-auto justify-content-center border jumbotron fade {{payment}}" id="PAYMENT" style="margin-top:-400px;">
+                            {% include 'checkout_payment.html' %}
 		</div>
 	</div>
 </section>

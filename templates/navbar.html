@@ -22,10 +22,10 @@
                                     <a class="nav-link" href="about.html">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/selection/select/">selection</a>
+                                    <a class="nav-link" href="/selection/select/">Selection</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="project.html">Portfolio</a>
+                                    <a class="nav-link" href="/order/orders/">Orders</a>
                                 </li>
                                 <li class="nav-item">
                                      <a class="nav-link" href="/cart">cart</a>
@@ -33,19 +33,19 @@
 
                                          {% if user.is_authenticated %}
                                              <li class="nav-item">
-                                                <a class="nav-link" href="">hello,{{user.username}}</a>
+                                                <a class="nav-link" href="/customer/userprofile/">hello,{{user.username}}</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="/customer/logout">Logout</a>
+                                                <a class="nav-link" href="/customer/logout/">Logout</a>
                                             </li>
 
 
 										{% else %}
 											<li class="nav-item">
-                                                <a class="nav-link" href="/signup">Sign Up</a>
+                                                <a class="nav-link" href="/signup/">Sign Up</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="/login">Login</a>
+                                                <a class="nav-link" href="/login/">Login</a>
                                             </li>
 										{% endif %}
                             </ul>

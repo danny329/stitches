@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+{% load static %}
+{% static "images" as baseUrl %}
+{% include 'com.html' %}
+{% include 'navbar.html' %}
+<head> 
+	<title>User Profile</title>
+</head> 
+<div class="container" style="margin-top:120px;">
+	<div class="row bg-light">
+		<div class="col-sm-3">{{ formuser.username|as_crispy_field  }}</div>
+		<div class="col-sm-3">{{ formuser.first_name|as_crispy_field  }}</div>
+		<div class="col-sm-3">{{ formuser.last_name|as_crispy_field  }}</div>
+		<div class="col-sm-3">{{ formuser.email|as_crispy_field  }}</div>
+	</div>
+	<form method = "post" action="/customer/userprofile/" enctype="multipart/form-data">
+		{% csrf_token %}
+
+
+		{{ formuserextend.as_p }}
+		{{ formmeasuremeasurement.as_p }}
+		<button type="submit">Save</button>
+	</form>
+</div>
+
+

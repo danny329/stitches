@@ -3,13 +3,13 @@ from .models import Color,Pattern,ClothType, ClothMenu, Orders , Collar, Cuff, B
 from customer.forms import MeasurementForm
 from django.contrib.auth.models import User
 # Create your views here.
-design_summary = Orders()
-context = {}
+try:
+    design_summary = Orders()
+    context = {}
+except Exception as e:
+    print(e)
 def selectionpage(request):
     return render(request, 'selectionpage.html')
-
-
-
 
 def select(request, part=0):
     #to view list of already existing datas
@@ -35,7 +35,7 @@ def select(request, part=0):
     global design_summary
     global context
     if request.user.is_authenticated:
-        list_of_measure = Measurement.objects.filter(user__username=request.user)
+        list_of_measure = Measurement.objects.filter(user=request.user)
 
     rest = []
     if request.method == 'GET':
@@ -144,6 +144,7 @@ def select(request, part=0):
             measurement = MeasurementForm(request.POST)
             if measurement.is_valid():
                 measure = measurement.save(commit=False)
+
                 if request.user.is_authenticated:
                     measure.user = User.objects.get(username=request.user)
                 if design_summary.standard_size is not None:
@@ -157,7 +158,6 @@ def select(request, part=0):
             context = {'color': color, 'pattern': pattern, 'clothtype': clothtype, 'pocket': pocket, 'collar': collar,'back': back, 'front': front, 'cuff': cuff,
                        'button': button, 'buttonhole': buttonhole,'standardsize': standardsize, 'shirtfit': shirtfit, 'clothmenu': clothmenu, 'count': count,
                        'rest': rest, 'summary': design_summary, 'measurement': measurement, 'list_of_measure':list_of_measure }
-
             # end  selection summary
         except Exception as e:
             print(e)

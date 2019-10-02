@@ -16,8 +16,8 @@
    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
 </script>
 </head>
-{% include 'navbar.html' %}
-<section class="container  border" style="margin-top:150px;">
+
+<section class="container  border" style="margin-top:0px;">
     <div class="row text-center bg-light pt-2 border border-top-0 border-left-0 border-right-0">
         <div class="col-sm-6 "><h5>PRODUCT</h5></div>
         <div class="col-sm-3" style="padding-left:75px;"><h5>QUANTITY</h5></div>
@@ -121,32 +121,12 @@
             </div>
         </div>
         <div class="col-sm-3 text-center p-3 ">
-            <form action="/cart/" method="post">{% csrf_token%}
-                <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-3">
-                        <button name="clothid_minus" class="btn btn-link border border-0" value="{{item.pk}}" style="width:50px;height:50px;outline:none;">
-                            <img name="minus"  src="https://img.icons8.com/nolan/24/000000/minus.png">
-                        </button>
-                    </div>
-                    <div class="col-3 mt-3">{{item.quantity}}</div>
-                    <div class="col-2">
-                        <button name="clothid_plus" class="btn btn-link " value="{{item.pk}}" style="width:50px;height:50px;background: none;">
-                            <img name="add"  src="https://img.icons8.com/nolan/24/000000/plus.png">
-                        </button>
-                    </div>
-                   <div class="col-3"></div>
+                <div class="row pl-4">
+                    <div class="col-12 pl-5 mt-3 mx-auto">{{item.quantity}}</div>
                </div>
-            </form>
         </div>
         <div class="col-sm-2 text-center " style="padding-left:20px;padding-top:30px;">₹&nbsp;{{item.subtotal}}</div>
-        <div class="col-sm-1 p-3">
-             <form action="/cart/" method="post">{% csrf_token%}
-                  <button name="clothid_delete" class="btn btn-link " value="{{item.pk}}" style="width:50px;height:50px;background: none;">
-                      <img name="delete" src="https://img.icons8.com/color/24/000000/delete-forever.png">
-                  </button>
-            </form>
-        </div>
+
     </div>
     {% empty %}
             <p class="mx-auto text-center">Sorry, no item in cart.</p>
@@ -155,13 +135,11 @@
     <div class="row m-2 flex border border-bottom-0 border-left-0 border-right-0">
 
         <div class="col-sm-9 text-right p-1"><h4>Grand Total</h4></div>
-        <div class="col-sm-2 text-center p-1"><h4>₹&nbsp;{{total}}</h4></div>
+        <div class="col-sm-2 text-center p-1"><h4>₹&nbsp;{{gt}}</h4></div>
+    </div>
     </div>
 </section>
-<div class="container text-center mx-auto mt-3">
-        <a class="btn btn-secondary  mr-5 pt-2" href="/order/checkout/review/"><h5 style="color:white;">Checkout</h5></a>
-        <a class="btn btn-secondary pt-2" href="/selection/select/"><h5 style="color:white;">Continue Shopping</h5></a>
-</div>
+
 <script>
 var arr = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ];
 $.each( arr, function( index, value ){

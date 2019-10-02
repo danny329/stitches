@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from .models import UserDetails
-from selection.models import Orders
+from .forms import UserForm, UserExtend, MeasurementForm
+from selection.models import Orders,Measurement
 
 # Create your views here.
 
@@ -56,3 +57,30 @@ def logout(request):
     auth.logout(request)
 
     return redirect('/')
+
+
+def userprofile(request):
+    try:
+        if request.user.is_authenticated:
+            if request.method == 'POST':
+                formuser = UserForm(request.POST,instance=User.objects.get(pk=request.user))
+                formuserextend = UserExtend(request.POST,instance=UserDetails.objects.get(userref=request.user))
+                formmeasuremeasurement = MeasurementForm(request.POST,instance=Measurement.objects.get(user=request.user))
+
+                if formuser.is_valid() and formuserextend.is_valid() and formmeasuremeasurement.is_valid():
+                    formuser.save(commit=False)
+                    formuserextend.save(commit=False)
+                    formmeasuremeasurement.save()
+                    print("success")
+            else:
+                formuser = UserForm()
+                formuserextend = UserExtend()
+                formmeasuremeasurement = MeasurementForm()
+            context = {'formuser': formuser, 'formuserextend': formuserextend, 'formmeasuremeasurement': formmeasuremeasurement}
+            return render(request, 'userprofile.html', context)
+
+
+        else:
+            return redirect('/customer/login_page/')
+    except Exception as e:
+        print(e)
