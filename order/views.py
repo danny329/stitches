@@ -19,22 +19,27 @@ def checkout(request,part=1):
             for item in cart:
                 gt += item.subtotal
                 print(type(gt))
+            context = {'cart': cart, 'gt': gt}
             if request.method == 'POST':
                 if 'finishpayment' in request.POST:
-                    carttoorder = OrderHistory.objects.create(user=request.user, price=gt, date=datetime.now())
-                    # carttoorder.user = request.user
-                    # carttoorder.price = gt
-                    # carttoorder.date = datetime.now()
+                    carttoorder = OrderHistory.objects.create(user=request.user, price=gt, orderdate=datetime.now())
                     for item in cart:
                         item.status = OrderStatusCode.objects.get(status='CONFIRMED')
                         item.save()
                         carttoorder.order.add(item)
                     carttoorder.save()
+                    return redirect('/order/orders/')
                     print('e')
                 try:
                     shippingdetail = UserDetailForm(request.POST, instance=UserDetails.objects.get(userref=request.user))
+                    if shippingdetail.is_valid:
+                        shippingdetail.save()
+                        context['payment'] = 'show active'
                 except Exception as e:
                     shippingdetail = UserDetailForm(request.POST)
+                    if shippingdetail.is_valid:
+                        shippingdetail.save()
+                        context['payment'] = 'show active'
                 if shippingdetail.is_valid():
                     shipinfo = shippingdetail.save(commit=False)
                     shipinfo.userref = request.user
@@ -45,7 +50,7 @@ def checkout(request,part=1):
                 except Exception as e:
                     shippingdetail = UserDetailForm()
                     print(e)
-            context={'cart' : cart, 'gt' : gt, 'shippingdetail' : shippingdetail}
+            context['shippingdetail'] = shippingdetail
             if part == 'review':
                 context['review'] = 'show active'
             if part == 'shipping':

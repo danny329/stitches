@@ -34,7 +34,7 @@ class UserDetailsAdmin(admin.ModelAdmin):
     list_display = ['userref', 'address', 'phone', 'gender']
 
 class OrderHistoryAdmin(admin.ModelAdmin, ExportCsvMixin):
-    list_display = ['user', 'date', 'price', 'orderlist']
+    list_display = ['user', 'orderdate', 'price', 'deliverydate', 'orderlist']
 
     actions = ["export_as_csv"]
 

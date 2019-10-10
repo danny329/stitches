@@ -229,7 +229,7 @@ a:focus, .button:focus, button:focus, .btn:focus {
 
 /* line 132, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_common.scss */
 .section_bg_2 {
-  background-color: #162b45;
+  background-color: #d5b6ec;
 }
 
 /* line 135, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_common.scss */
@@ -3908,7 +3908,7 @@ ul {
 /**************** service_part css start ****************/
 /* line 2, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_happy_client.scss */
 .happy_client {
-  background-color: #162b45;
+  background-color: #593c79;
   padding: 110px 0px 80px;
 }
 
@@ -4035,7 +4035,7 @@ ul {
 /**************** service_part css start ****************/
 /* line 4, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_service.scss */
 .service_part .single_service_part_iner {
-  background-color: #2e4158;
+  background-color: #240646;
   padding: 50px 24px;
   text-align: center;
   border-radius: 5px;
@@ -7784,7 +7784,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 2, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_footer.scss */
 .footer-area {
-  background-color: #162b45;
+  background-color: #301346;
   padding: 100px 0px 20px;
 }
 
