@@ -5,7 +5,7 @@ from .models import UserDetails
 class MeasurementForm(forms.ModelForm):
     class Meta:
         model = Measurement
-        fields = ['profile_name', 'shirt_fit', 'neck', 'chest', 'waist', 'hips', 'shirt_length', 'shoulders', 'sleeve_length', 'cuff', 'arm_hole', 'biceps', 'height', 'weight']
+        fields = ['profile_name', 'shirt_fit', 'neck', 'chest', 'waist', 'hips', 'shirt_length', 'shoulders', 'sleeve_length', 'cuff', 'arm_hole', 'biceps', 'height', 'weight', 'user']
 
 class UserDetailForm(forms.ModelForm):
     class Meta:

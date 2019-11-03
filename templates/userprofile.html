@@ -38,8 +38,8 @@
 						  <div class="col-sm-6"></div>
 						  <div class="col-sm-12"><h5>Email Address & Username </h5></div>
 						  <div class="col-sm-3">{{ formuser.username|as_crispy_field  }}</div>
-						  <div class="col-sm-3">{{ formuser.email|as_crispy_field  }}</div>
-						  <div class="col-sm-6"></div>
+						  <div class="col-sm-6">{{ formuser.email|as_crispy_field  }}</div>
+						  <div class="col-sm-3"></div>
 						  <div class="col-sm-12"><h5>Address & Phone Number </h5></div>
 						  <div class="col-sm-3">{{ formuserextend.phone|as_crispy_field  }}</div>
 						  <div class="col-sm-6">{{ formuserextend.address|as_crispy_field  }}</div>
@@ -51,6 +51,7 @@
 
 								<div class="col-sm-12 mb-3"><h5>Personal Measurements</h5></div>
 								<div class="col-sm-4">{{ formmeasuremeasurement.profile_name|as_crispy_field  }}</div>
+								<div class="col-sm-4">{{ formmeasuremeasurement.user|as_crispy_field  }}</div>
 								<div class="col-sm-12 mt-3"><h5>Body Measurements</h5></div>
 								<div class="col-sm-3">{{ formmeasuremeasurement.shirt_fit|as_crispy_field  }}</div>
 								<div class="col-sm-3">{{ formmeasuremeasurement.neck|as_crispy_field  }}</div>

@@ -25,19 +25,19 @@
 					 {% csrf_token %}
 					<h3>Registration Form</h3>
 					<div class="form-group">
-						<input type="text" placeholder="First Name" name="first_name" class="form-control">
-						<input type="text" placeholder="Last Name" name="last_name" class="form-control">
+						<input type="text" placeholder="First Name" name="first_name" class="form-control" required>
+						<input type="text" placeholder="Last Name" name="last_name" class="form-control" required>
 					</div>
 					<div class="form-wrapper">
-						<input type="text" placeholder="Username" name="username" class="form-control">
+						<input type="text" placeholder="Username" name="username" class="form-control" required>
 						<i class="zmdi zmdi-account"></i>
 					</div>
 					<div class="form-wrapper">
-						<input type="text" placeholder="Email Address" name="email" class="form-control">
+						<input type="email" placeholder="Email Address" name="email" class="form-control" required>
 						<i class="zmdi zmdi-email"></i>
 					</div>
 					<div class="form-wrapper">
-						<select name="gender" id="" class="form-control ">
+						<select name="gender" id="" class="form-control " required>
 							<option value="" disabled selected>Gender</option>
 							<option value="male">Male</option>
 							<option value="female">Female</option>
@@ -46,11 +46,11 @@
 						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 					</div>
 					<div class="form-wrapper">
-						<input type="password" placeholder="Password" name="password1" class="form-control">
+						<input type="password" placeholder="Password" name="password1" class="form-control" required>
 						<i class="zmdi zmdi-lock"></i>
 					</div>
 					<div class="form-wrapper">
-						<input type="password" placeholder="Confirm Password" name="password2" class="form-control">
+						<input type="password" placeholder="Confirm Password" name="password2" class="form-control" required>
 						<i class="zmdi zmdi-lock"></i>
 					</div>
 					<button type="submit">Register
@@ -59,6 +59,10 @@
 				</form>
 			</div>
 		</div>
-		
+		<!--sweetify-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+{% load sweetify %}
+{% sweetify %}
+
 	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

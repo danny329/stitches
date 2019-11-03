@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from .models import UserDetails
 from .forms import UserForm, UserExtend, MeasurementForm
-from selection.models import Orders,Measurement
+from selection.models import Orders, Measurement
+import sweetify
 
 # Create your views here.
 
@@ -18,9 +19,11 @@ def signupform(request):
         password2 = request.POST['password2']
         if password1 == password2:
             if User.objects.filter(username=username).exists():
-                print('username taken')
+                sweetify.warning(request, 'Username already taken.')
+                return render(request, 'signup.html')
             elif User.objects.filter(email=email).exists():
-                print('email taken')
+                sweetify.warning(request, 'Email already exists.')
+                return render(request, 'signup.html')
             else:
                 user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                                 email=email, password=password1)
@@ -28,9 +31,11 @@ def signupform(request):
                 user.save()
                 userdetails.save()
 
-                print('user created')
+                sweetify.success(request, 'Registration successful')
         else:
-            print('password wrng')
+            sweetify.error(request, 'Email mismatch.')
+            return render(request, 'signup.html')
+
         return redirect('/')
     else:
         return render(request, 'signup.html')
@@ -45,9 +50,10 @@ def login_page(request):
 
         if user is not None:
             auth.login(request, user)
+            sweetify.success(request, 'logged in as ' + request.user.username)
             return redirect('/')
         else:
-            print('invalid ')
+            sweetify.error(request, 'user doesn\'t exist')
             return redirect('/login')
 
 
@@ -63,19 +69,25 @@ def userprofile(request):
     try:
         if request.user.is_authenticated:
             if request.method == 'POST':
-                formuser = UserForm(request.POST, instance=User.objects.get(pk=request.user.pk))
-                formuserextend = UserExtend(request.POST, instance=UserDetails.objects.get(userref=request.user))
-                formmeasuremeasurement = MeasurementForm(request.POST, instance=Measurement.objects.get(user=request.user))
+                formuser = UserForm( instance=User.objects.get(pk=request.user.pk))
+                formuserextend = UserExtend(instance=UserDetails.objects.get(userref=request.user))
+                try:
+                    formmeasuremeasurement = MeasurementForm(request.POST, instance=Measurement.objects.get(user=request.user), initial={'user': request.user.pk})
+                except:
+                    formmeasuremeasurement = MeasurementForm(request.POST, initial={'user': request.user.pk})
+                formmeasuremeasurement.fields['user'].disabled = True
 
-                if formuser.is_valid() and formuserextend.is_valid() and formmeasuremeasurement.is_valid():
-                    formuser.save(commit=False)
-                    formuserextend.save(commit=False)
+                if formmeasuremeasurement.is_valid():
                     formmeasuremeasurement.save()
-                    print("success")
+                    sweetify.success(request, 'Success')
             else:
                 formuser = UserForm(instance=User.objects.get(pk=request.user.pk))
                 formuserextend = UserExtend(instance=UserDetails.objects.get(userref=request.user))
-                formmeasuremeasurement = MeasurementForm()
+                try:
+                    formmeasuremeasurement = MeasurementForm(instance=Measurement.objects.get(user=request.user), initial={'user': request.user.pk})
+                except:
+                    formmeasuremeasurement = MeasurementForm(initial={'user': request.user.pk})
+                formmeasuremeasurement.fields['user'].disabled = True
             context = {'formuser': formuser, 'formuserextend': formuserextend, 'formmeasuremeasurement': formmeasuremeasurement}
             return render(request, 'userprofile.html', context)
 

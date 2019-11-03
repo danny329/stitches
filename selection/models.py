@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -95,7 +96,7 @@ class ClothMenu(models.Model):
     button_hole = models.ForeignKey(ButtonHole, on_delete=models.CASCADE, related_name='buttonhole_cm')
     pocket = models.ForeignKey(Pocket, on_delete=models.CASCADE, related_name='pocket_cm')
     front = models.ForeignKey(Front, on_delete=models.CASCADE, related_name='front_cm')
-    price = models.DecimalField(max_digits=8, decimal_places=2)
+    price = models.DecimalField(max_digits=8, decimal_places=2, validators=[MinValueValidator(1.0)])
     standard_size = models.ForeignKey(StandardSize, on_delete=models.CASCADE, related_name='standardsize_cm')
 
     def __str__(self):
@@ -119,18 +120,18 @@ class Measurement(models.Model):
     profile_name = models.CharField(max_length=25)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='userm', null=True, blank=True)
     shirt_fit = models.ForeignKey(ShirtFit, on_delete=models.CASCADE, related_name='shirtfit')
-    neck = models.DecimalField(max_digits=5, decimal_places=2)
-    chest = models.DecimalField(max_digits=5, decimal_places=2)
-    waist = models.DecimalField(max_digits=5, decimal_places=2)
-    hips = models.DecimalField(max_digits=5, decimal_places=2)
-    shirt_length = models.DecimalField(max_digits=5, decimal_places=2)
-    shoulders = models.DecimalField(max_digits=5, decimal_places=2)
-    sleeve_length = models.DecimalField(max_digits=5, decimal_places=2)
-    cuff = models.DecimalField(max_digits=5, decimal_places=2)
-    arm_hole = models.DecimalField(max_digits=5, decimal_places=2)
-    biceps = models.DecimalField(max_digits=5, decimal_places=2)
-    height = models.DecimalField(max_digits=5, decimal_places=2)
-    weight = models.DecimalField(max_digits=5, decimal_places=2)
+    neck = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    chest = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    waist = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    hips = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    shirt_length = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    shoulders = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    sleeve_length = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    cuff = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    arm_hole = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    biceps = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    height = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
+    weight = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(1.0)])
     def __str__(self):
         return self.profile_name
 
@@ -147,7 +148,7 @@ class Orders(models.Model):
     size = models.ForeignKey(Measurement, on_delete=models.CASCADE, related_name='Measurement', null=True, blank=True)
     shirtfit = models.ForeignKey(ShirtFit, on_delete=models.CASCADE, related_name='shirtfitd', null=True, blank=True)
     standard_size = models.ForeignKey(StandardSize, on_delete=models.CASCADE, related_name='standardsize', null=True, blank=True)
-    subtotal = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
+    subtotal = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(1.0)])
     quantity = models.IntegerField(null=True, blank=True)
     status = models.ForeignKey(OrderStatusCode,  on_delete=models.CASCADE, related_name='orderstatuscode', null=True, blank=True)
     def __str__(self):
