@@ -5,16 +5,17 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/payment_styles.css'%}">
 </head>
-<section class=" border mx-auto container" >
-    <div class="container w-75 p-2 border bg-danger text-center mx-auto border" style="margin-top:-50px;" >
-                <h4 class="col-sm-12">PAYMENT AMT : Rs. {{gt}} </h4>
-            </div>
-    <div class="container-fluid " style="margin-top:5px;">
-        <div class="creditCardForm">
-            <div class="heading">
+<section class=" border mx-auto" >
+    <div class="col-lg-7 col-md-11 p-2 border bg-info rounded-pill text-center mx-auto">
+        <h5 class="col-sm-12">PAYMENT AMT : Rs. {{gt}} </h5>
+    </div>
+    <br>
+    <div class="container-fluid p-0">
+        <div class="creditCardForm p-0">
+            <div class="heading p-1">
                 <h3>Confirm Purchase</h3>
             </div>
-            <div class="payment">
+            <div class="payment m-0">
                 <form action="/order/checkout/payment/" id="form1" method="post">{% csrf_token %}
                     <input type="hidden" name="finishpayment">
                     <div class="form-group owner">
@@ -54,25 +55,25 @@
                             <option value="19"> 2026</option>
                         </select>
                     </div>
-                    <div class="form-group" id="credit_cards">
+                    <div class="form-group " id="credit_cards">
                         <img src="{% static 'img/visa.jpg'%}" id="visa">
                         <img src="{% static 'img/mastercard.jpg'%}" id="mastercard">
                         <img src="{% static 'img/amex.jpg'%}" id="amex">
                     </div>
                     <div class="form-group" id="pay-now">
-                        <button type="submit" class="btn  btn-sm" id="confirm-purchase" >Confirm</button>
+                        <button type="submit" class="btn btn-sm btn-primary" id="confirm-purchase" >Confirm</button>
                     </div>
                 </form>
             </div>
         </div>
-<div class="examples mx-auto">
+        <div class="examples mx-auto">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>Type</th>
                             <th>Card Number</th>
-                            <th>Security Code</th>
+                            <th>Cvv</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,9 +97,7 @@
             </div>
         </div>
     </div>
-
 </section>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="{% static 'js/jquery.payform.min.js'%}" charset="utf-8"></script>
-    <script src="{% static 'js/payment_script.js'%}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'js/jquery.payform.min.js'%}" charset="utf-8"></script>
+<script src="{% static 'js/payment_script.js'%}"></script>

@@ -4,20 +4,26 @@
 <section>
     <div class="container">
         <!-- selection categories nav pills-->
-                <ul class="nav nav-tabs w-75  justify-content-center p-2 mx-auto">
-                  <li class="nav-item "><a class="nav-link {{scriptdeb}}" data-toggle="tab" href="#BUTTON">BUTTON <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
-                  <li class="nav-item"><a class="nav-link {{scriptdebu}}" data-toggle="tab" href="#BUTTONHOLE">BUTTONHOLE <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                <ul class="nav nav-pills justify-content-center p-1 pt-2">
+                  <li class="nav-item col-3 col-xs-6 p-0 text-center">
+                      <a class="nav-link {{DEBUTTON}} p-1 m-0"   href="/selection/select/MDETAILS/DEBUTTON/" >
+                         <p style="font-size: 11px; display: inline;">BUTTON </p>
+                         <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
+                  <li class="nav-item col-3 col-xs-6 p-0 text-center">
+                      <a class="nav-link {{DEBUTTONHOLE}} p-1 m-0 "   href="/selection/select/MDETAILS/DEBUTTONHOLE/">
+                          <p style="font-size: 11px; display: inline;">BUTTONHOLE </p>
+                          <img src="https://img.icons8.com/android/10/000000/down.png"></a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <!--tab 1 - fabric-->
-                      <div class="tab-pane container fade {{scriptdeb}}" id="BUTTON">
+                    <!--tab 1 - button-->
+                      <div class="tab-pane  fade {{DEBUTTON}}" id="BUTTON">
                         {% include 'button.html' %}
 
                       </div>
-                    <!--tab 2 - details-->
-                      <div class="tab-pane container fade {{scriptdebu}}" id="BUTTONHOLE">
+                    <!--tab 2 - buttinhole-->
+                      <div class="tab-pane  fade {{DEBUTTONHOLE}}" id="BUTTONHOLE">
 
                         {% include 'buttonhole.html' %}
 
@@ -25,6 +31,8 @@
 
                 </div>
     </div>
-    {% include 'custom_summary.html' %}
+    <div>
+        {% include 'custom_summary.html' %}
+    </div>
 </section>
 {% endblock %}

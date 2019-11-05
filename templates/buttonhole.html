@@ -8,58 +8,37 @@
       <style>
        .buttonhole_radio{
             transform: scale(1);
-
             position:absolute;
-            width:150px;
-            height:150px;
             z-index: 1;
             opacity: 0.0;
-
        }
         .labradio
         {
             cursor: pointer;
             position:relative;
-
-
         }
-       .labradio .buttonhole_radio:checked + .labradio .buttonhole
-       {
-            border:0.5px solid red;
-       }
-
-
     </style>
  </head>
 <section>
-     <form method="post" name="senddatabuttonhole" action="/selection/select/BUTTONHOLE/">
+     <form method="post" name="senddatabuttonhole" action="/selection/select/MDETAILS/DEBUTTONHOLE/">
         {% csrf_token %}
-    <div class="form-row mt-2">
         <div class="form-holder form-holder-2 row">
             {% for val in buttonhole %}
-
-
-             <div class="col-sm-2 mx-auto">
-             <label for="radio1" class="labradio mx-auto">
-             <input class="buttonhole_radio mx-auto"  type='radio'  value='{{val}}' name='button_hole_select' id="radio1" />
-                <div class="card  buttonhole" style="width:150px; height:150px;font-size: 8px;">
+            <div class="col-lg-2 col-md-3 col-sm-6 text-center  p-1 ">
+             <label for="radio1" class="labradio ">
+                <div class="card  buttonhole" >
+                    <input class="buttonhole_radio mx-auto" style="width:100px; height:100px;"  type='radio'  value='{{val}}' name='button_hole_select' id="radio1" />
                   <img class="card-img-top mx-auto" style="width:100px; height:100px;" src="{{val.button_hole_image.url}}" alt="Card image">
                   <div class="mt-2 btn btn-light">
                     <p class="text-center "><b> {{val.button_hole_style}} </b></p>
                   </div>
                 </div>
-
+                 </label>
             </div>
-            </label>
-
         {% empty %}
                 <p class="mx-auto text-center">Sorry, no selection to display.</p>
         {% endfor %}
-
-
         </div>
-
-    </div>
     </form>
 </section>
   <script type='text/javascript'>

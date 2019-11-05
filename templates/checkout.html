@@ -19,39 +19,39 @@
 
 {% include 'navbar.html' %}
 
-<section>
-	<div class="mx-auto text-center" style="margin-top:100px;"><h1>CHECKOUT</h1></div>
-	<div class="row text-center w-75 mx-auto">
+<section class="container">
+	<br><br><br><br><br>
+	<div class="mx-auto text-center"><h1>CHECKOUT</h1></div>
+	<div class="row text-center mx-auto">
 		<ul class="nav nav-pills w-100  justify-content-center p-1 mx-auto">
-
-
-		<li class="col-4 nav-item "><a class="nav-link " data-toggle="pill" href="/order/checkout/review/">
-			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/1-c.png"></div>
-			<div class="col-6 mx-auto"><h6>Review Order</h6></div></a>
-		</li>
-		<li class="col-4  nav-item"><a class="nav-link " data-toggle="pill" href="/order/checkout/shipping/">
-			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/2-c.png"></div>
-			<div class="col-6 mx-auto" style=" padding-right:8px;"><h6>Shipping Details</h6></div></a>
-		</li>
-		<li class="col-4 nav-item "><a class="nav-link " data-toggle="pill" href="/order/checkout/payment/">
-			<div class="col-6 mx-auto"><img src="https://img.icons8.com/color/48/000000/3-c.png"></div>
-			<div class="col-6 mx-auto" ><h6>Payment</h6></div></a>
-		</li>
-			</ul>
+			<li class="col-4 nav-item p-0 "><a class="nav-link p-0"  href="/order/checkout/review/">
+				<div class="col-6 mx-auto p-0"><img src="https://img.icons8.com/color/48/000000/1-c.png"></div>
+				<div class="col-6 mx-auto p-0"><h6>Review Order</h6></div></a>
+			</li>
+			<li class="col-4  nav-item p-0"><a class="nav-link p-0" href="/order/checkout/shipping/">
+				<div class="col-6 mx-auto p-0"><img src="https://img.icons8.com/color/48/000000/2-c.png"></div>
+				<div class="col-6 mx-auto p-0" style=" padding-right:8px;"><h6>Shipping Details</h6></div></a>
+			</li>
+			<li class="col-4 nav-item p-0"><a class="nav-link p-0"  href="/order/checkout/payment/">
+				<div class="col-6 mx-auto p-0"><img src="https://img.icons8.com/color/48/000000/3-c.png"></div>
+				<div class="col-6 mx-auto p-0" ><h6>Payment</h6></div></a>
+			</li>
+		</ul>
 	</div>
-	<div class="container-fluid tab-content " >
-
-		<div class="tab-pane w-75 mx-auto justify-content-center jumbotron fade {{review}}" id="REVIEW">
-                            {% include 'checkout_review.html' %}
+	<div class="tab-content " >
+		<div class="tab-pane w-100 mx-auto justify-content-center jumbotron p-1 fade {{review}}" id="REVIEW">
+			{% include 'checkout_review.html' %}
 		</div>
-
-		<div class="tab-pane w-75 mx-auto justify-content-center jumbotron fade {{shipping}} " id="SHIPPING">
-                            {% include 'checkout_shipping.html' %}
+		<div class="tab-pane w-100 mx-auto justify-content-center jumbotron p-3 fade {{shipping}} " id="SHIPPING">
+            {% include 'checkout_shipping.html' %}
 		</div>
-
-		<div class="tab-pane w-75 mx-auto justify-content-center border jumbotron fade {{payment}}" id="PAYMENT" style="margin-top:-400px;">
-                            {% include 'checkout_payment.html' %}
+		<div class="tab-pane w-100 mx-auto justify-content-center jumbotron p-1 fade {{payment}}" id="PAYMENT">
+            {% include 'checkout_payment.html' %}
 		</div>
 	</div>
 </section>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 

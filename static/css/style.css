@@ -154,12 +154,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 78, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_common.scss */
 p {
-  color: #666666;
-  font-family: "Roboto", sans-serif;
+  color: #112e41;
+  font-family: "Oswald", sans-serif;
   font-size: 14px;
-  margin-bottom: 0px;
-  color: #646464;
-  line-height: 1.8;
 }
 
 /* line 87, E:/170 Kanox Agency/170_Kanox_Agency_html/sass/_common.scss */

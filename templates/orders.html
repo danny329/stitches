@@ -2,21 +2,20 @@
 {% static "images" as baseUrl %}
 {% include 'com.html' %}
 {% include 'navbar.html' %}
-
-<div class="container border mx-auto w-75 " style="margin-top:100px;">
-<!--    <div class="col-sm-12 mt-3 mb-3"><h6 class="text-center">-&#45;&#45;Orders in progress-&#45;&#45;</h6></div>-->
+<br><br><br><br><br>
+<div class="container border mx-auto " >
     {% for orderslist in allorders %}
     <div class="bg-light border mt-2 mb-2">
-        <h6 class="text-center ">order number : {{orderslist.pk}}</h6>
+        <h6 class="col-sm-3 text-center btn-secondary rounded">order number : {{orderslist.pk}}</h6>
         {% for itemslist in allordersitemconfirmed %}
             {% for item in orderslist.order.all %}
                 {% if itemslist.pk == item.pk %}
                     <div class="col-sm-10 mb-3 mx-auto ">
-                    <div class="row  border mx-auto pl-1">
-                        <div class=" my-1 col-sm-4 border p-0 ">
-                            <img src="{{item.cloth_menu.image.url}}" width="140px" height="135px"  alt="image">
+                        <div class="row border mx-auto pl-1">
+                        <div class=" my-1 col-sm-3 border p-0 ">
+                            <img src="{{item.cloth_menu.image.url}}" width="100%"  alt="image">
                         </div>
-                        <div class="col-sm-8 bg-light">
+                        <div class="col-sm-9 bg-light">
                             <h6 class="mt-1 text-uppercase font-weight-bold">{{item.cloth_menu.name}}</h6>
                             <h6>QTY : {{item.quantity}}</h6>
                             <h6>PRICE : {{item.subtotal}}</h6>
@@ -24,7 +23,7 @@
                             <h6 class="bg-warning p-2">Status : {{item.status}}</h6>
                         </div>
                     </div>
-                </div>
+                    </div>
                 {% endif%}
             {% endfor%}
         {% endfor %}
@@ -33,11 +32,11 @@
             {% for item in orderslist.order.all %}
                 {% if itemslist.pk == item.pk %}
                     <div class="col-sm-10 mb-3 mx-auto ">
-                    <div class="row  border mx-auto">
-                        <div class=" mt-1 mb-1 col-sm-4 border p-0">
-                            <img src="{{item.cloth_menu.image.url}}" width="140px" height="135px"  alt="image">
+                        <div class="row  border mx-auto">
+                        <div class=" my-1 col-sm-3 border p-0">
+                            <img src="{{item.cloth_menu.image.url}}" width="100%"  alt="image">
                         </div>
-                        <div class="col-sm-8 bg-light">
+                        <div class="col-sm-9 bg-light ">
                             <h6 class="mt-1 text-uppercase font-weight-bold">{{item.cloth_menu.name}}</h6>
                             <h6>QTY : {{item.quantity}}</h6>
                             <h6>PRICE : {{item.subtotal}}</h6>
@@ -45,19 +44,11 @@
                             <h6 class="bg-success p-2">Status : {{item.status}}</h6>
                         </div>
                     </div>
-                </div>
+                    </div>
                 {% endif%}
             {% endfor%}
         {% endfor %}
     </div>
     {% endfor %}
 
-<!--    <div class="col-sm-12 mt-3 mb-3"><h6 class="text-center">-&#45;&#45;Previous orders-&#45;&#45;</h6></div>-->
-<!-- {% for orderslist in allorders %}-->
-<!--    <div class="bg-light border mt-2">-->
-<!--        <h6 class="text-center">order number : {{orderslist.pk}}</h6>-->
-
-<!--    </div>-->
-<!--    {% endfor %}-->
-
-<!--</div>-->
+</div>

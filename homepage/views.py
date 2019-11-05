@@ -7,10 +7,16 @@ def index(request):
     return render(request, 'index.html')
 
 def login(request):
-    return render(request, 'login_page.html')
+    if request.user.is_authenticated:
+        return render(request, 'index.html')
+    else:
+        return render(request, 'login_page.html')
 
 def signup(request):
-    return render(request, 'signup.html')
+    if request.user.is_authenticated:
+        return render(request, 'index.html')
+    else:
+        return render(request, 'signup.html')
 def cart(request):
 
         cart = Orders.objects.filter(user__username=request.user, status__status='INCART').order_by('pk')

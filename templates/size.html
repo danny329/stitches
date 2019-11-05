@@ -8,40 +8,41 @@
 </head>
 <div class="container">
     <div class="row text-center mx-auto" >
+        <!--        custom measure-->
         <div class="col-sm-12 p-3  mb-3" >
-            <h5 id="show_anchor" class="btn-light mx-auto text-center pt-3" style="width:450px;height:50px;">Custom Measurement</h5>
-
+            <h5 id="show_anchor" class="col-sm-3 btn-light mx-auto text-center p-3" >Custom Measurement</h5>
             <div id='manual' class="col-sm-12 ">
                 <h2>New measurement</h2>
+                <p>* in cms | in kgs *</p>
                 {% include 'measurement.html' %}
             </div>
         </div>
-        <div class="col-sm-12 mb-3" style="width:50%;">
+        <!--  existing measure      -->
+        <div class="col-sm-12 mb-3">
         {% if user.is_authenticated %}
-            <h5 id="show_anchor1" class="btn-light mx-auto text-center pt-3" style="width:450px;height:50px;">Existing Measurement</h5>
+            <h5 id="show_anchor1" class="btn-light mx-auto text-center p-3 col-sm-3" >Existing Measurement</h5>
             <div id='manual1' class="col-sm-12 ">
-                 <form action="/selection/select/SIZE/" name="sendform1" method="POST">
+                 <form action="/selection/select/MSIZE/SIZE/" name="sendform1" method="POST">
                         {% csrf_token %}
-                        <div class="form-row col text-center">
-                            <div class="form-wrapper  col-sm-4">
-                                <select name="profile_select" id="profile_select" class="form-control text-center">
-                                    <option value=""  disabled selected>Profile Name</option>
-                                    {% for val in list_of_measure %}
-                                    <option value="{{val.pk}}">{{val}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
+                        <div class="form-wrapper  col-sm-3 mx-auto">
+                            <select name="profile_select" id="profile_select" class="form-control">
+                                <option value=""  disabled selected>Profile Name</option>
+                                {% for val in list_of_measure %}
+                                <option value="{{val.pk}}">{{val}}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                  </form>
             </div>
         {% else %}
-            <h5>login to use previously added measurement</h5>
+            <h5 class="btn-light mx-auto text-center p-3 col-sm-3">login to use previously added measurement</h5>
         {% endif %}
         </div>
-        <div class="row mx-auto p-3 btn-light" style="width:50%;">
-            <h5 class="col-sm-12">I WANT TO ORDER A STANDARD SIZE.</h5>
+        <!-- standard measure       -->
+        <div class="row mx-auto p-3 btn-light">
+            <h6 class="col-sm-12 ">I WANT TO ORDER A STANDARD SIZE.</h6>
             <div class="col-sm-6" >
-            <form action="/selection/select/SIZE/" name="senddata1" method="post">
+            <form action="/selection/select/MSIZE/SIZE/" name="senddata1" method="post">
                 {% csrf_token %}
                 <select name="shirt_fit" id="shirt_fit" class="form-control text-center">
                     <option value=""  disabled selected>SHIRT FIT</option>
@@ -52,7 +53,7 @@
             </form>
             </div>
             <div class="col-sm-6" >
-            <form action="/selection/select/SIZE/" name="senddata2" method="post">
+            <form action="/selection/select/MSIZE/SIZE/" name="senddata2" method="post">
                 {% csrf_token %}
                 <select name="Standard_size" id="Standard_size" class="form-control text-center">
                     <option value=""  disabled selected>STANDARD SIZE</option>
@@ -65,7 +66,9 @@
         </div>
     </div>
     <br>
-    {% include 'custom_summary.html' %}
+    <div>
+        {% include 'custom_summary.html' %}
+    </div>
 </div>
  <script type='text/javascript'>
 

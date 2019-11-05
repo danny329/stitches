@@ -9,6 +9,8 @@ import sweetify
 
 
 def signupform(request):
+    if request.user.is_authenticated:
+        redirect('/')
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -43,6 +45,8 @@ def signupform(request):
 
 # verify login
 def login_page(request):
+    if request.user.is_authenticated:
+        redirect('/')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']

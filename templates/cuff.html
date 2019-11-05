@@ -10,56 +10,37 @@
             transform: scale(1);
             background:red;
             position:absolute;
-            width:200px;
-            height:130px;
             z-index: 1;
             opacity: 0.0;
-
        }
         .labradio
         {
             cursor: pointer;
             position:relative;
-
-
         }
-       .labradio .cuff_radio:checked + .labradio .cuff
-       {
-            border:0.5px solid red;
-       }
-
 
     </style>
  </head>
 <section>
-     <form method="post" name="senddatacuff" action="/selection/select/CUFF/">
+     <form method="post" name="senddatacuff" action="/selection/select/MDESIGN/DCUFF/">
         {% csrf_token %}
-    <div class="form-row mt-2">
         <div class="form-holder form-holder-2 row">
             {% for val in cuff %}
-
-
-             <div class="col-sm ">
-             <label for="radio1" class="labradio mx-auto">
-             <input class="cuff_radio mx-auto"  type='radio'  value='{{val}}' name='cuff_select' id="radio1" />
-                <div class="card  cuff" style="width:150px; height:150px;font-size: 8px;">
-                  <img class="card-img-top"  src="{{val.cuff_image.url}}" alt="Card image">
-                  <div class="mt-2 btn btn-light">
-                    <p class="text-center "><b> {{val.cuff_style}} </b></p>
-                  </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 text-center  p-1 ">
+                <label for="radio1" class="labradio mx-auto">
+                <div class="card  cuff" style="font-size: 8px;">
+                    <input class="cuff_radio "  type='radio' style="width:150px; height:150px;"  value='{{val}}' name='cuff_select' id="radio1" />
+                    <img class="card-img-top"  src="{{val.cuff_image.url}}" style="width:150px; height:150px;" alt="Card image">
+                    <div class="mt-2 btn btn-light">
+                        <p class="text-center "><b> {{val.cuff_style}} </b></p>
+                    </div>
                 </div>
-
+                </label>
             </div>
-            </label>
-
-        {% empty %}
-                <p class="mx-auto text-center">Sorry, no selection to display.</p>
-        {% endfor %}
-
-
+            {% empty %}
+                    <p class="mx-auto text-center">Sorry, no selection to display.</p>
+            {% endfor %}
         </div>
-
-    </div>
     </form>
 </section>
   <script type='text/javascript'>

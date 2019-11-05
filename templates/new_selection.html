@@ -1,7 +1,6 @@
 {% load static %}
 {% static "images" as baseUrl %}
 
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,70 +14,86 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
-  <title>Document</title>
+  <title>selection</title>
    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
 </script>
 </head>
 <body style="background-image: url('{% static 'img/wizard-v4.jpg'%}')">
-{% include 'navbar.html' %}
-
-
-<div class="container-fluid" >
-    <div class="jumbotron w-75  justify-content-center p-2 mx-auto" style="margin-top:100px;">
-        <div class="">
-               <!-- selection categories nav pills-->
-                <ul class="nav nav-pills w-75  justify-content-center p-2 mx-auto">
-                  <li class="nav-item "><a class="nav-link {{scriptf}}" data-toggle="pill" href="#FABRIC">FABRIC <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                  <li class="nav-item"><a class="nav-link {{scriptd}}" data-toggle="pill" href="#DESIGN">DESIGN <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                  <li class="nav-item"><a class="nav-link {{scriptde}}" data-toggle="pill" href="#DETAILS">DETAILS <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                  <li class="nav-item"><a class="nav-link {{scripts}}" data-toggle="pill" href="#SIZE">SIZE <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                  <li class="nav-item"><a class="nav-link {{scriptfi}}" data-toggle="pill" href="#FINISH">FINISH <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"></a></li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <!--tab 1 - fabric-->
-                      <div class="tab-pane container fade {{scriptf}}" id="FABRIC">
-                           <div class="progress">
-                                <div class="progress-bar" style="width:20%;height:10%;"></div>
-                           </div>
-                            {% include 'fabric.html' %}
-
-                      </div>
-                    <!--tab 2 - design-->
-                      <div class="tab-pane container fade {{scriptd}}" id="DESIGN">
-
-                           <div class="progress">
-                            <div class="progress-bar" style="width:40%;height:10%;"></div>
-                          </div>
-                          {% include 'design.html' %}
-                      </div>
-                      <div class="tab-pane container fade {{scriptde}}" id="DETAILS">
-                           <div class="progress">
-                                <div class="progress-bar" style="width:60%;height:10%;"></div>
-                           </div>
-                          {% include 'details.html' %}
-                      </div>
-                      <div class="tab-pane container fade {{scripts}}" id="SIZE">
-
-                           <div class="progress">
-                            <div class="progress-bar" style="width:80%;height:10%;"></div>
-                          </div>
-                           {% include 'size.html' %}
-                      </div>
-                      <div class="tab-pane container fade {{scriptfi}}" id="FINISH">
-                           <div class="progress">
-                                <div class="progress-bar" style="width:100%;height:10%;"></div>
-                           </div>
-                          {% include 'finish.html' %}
-                      </div>
-                </div>
-
-            </div>
-
+    {% include 'navbar.html' %}
+    <div class="container rounded" style="margin-top:100px;background-color: #f5fcfc;">
+        <!-- selection categories nav pills-->
+        <ul class="nav nav-pills justify-content-center p-1 pt-2 ">
+          <li class="nav-item col-2 col-xs-2 p-0 text-center ">
+              <a class="nav-link {{MFABRIC}} p-1 m-0"  href="/selection/select/FABRIC/FABRIC/" >
+                  <p style="font-size: 12px; display: inline;" class="pr-1">FABRIC </p>
+                  <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png" width="13px" height="13px">
+              </a>
+          </li>
+          <li class="nav-item col-2 col-xs-2 p-0 text-center ">
+              <a class="nav-link {{MDESIGN}} p-1 m-0 "  href="/selection/select/MDESIGN/DCOLLAR/" >
+                  <p style="font-size: 12px; display: inline;" class="pr-1">DESIGN </p>
+                  <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"  width="13px" height="13px">
+              </a>
+          </li>
+          <li class="nav-item col-2 col-xs-2 p-0 text-center">
+              <a class="nav-link {{MDETAILS}} p-1 m-0" href="/selection/select/MDETAILS/DEBUTTON/" >
+                  <p style="font-size: 12px; display: inline;" class="pr-1">DETAIL</p>
+                  <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"  width="13px" height="13px">
+              </a>
+          </li>
+          <li class="nav-item col-2 col-xs-2 p-0 text-center">
+              <a class="nav-link {{MSIZE}}  p-1 m-0" href="/selection/select/MSIZE/MSIZE/">
+                  <p style="font-size: 12px; display: inline;" class="pr-1">&nbsp;&nbsp;&nbsp;SIZE&nbsp; </p>
+                  <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"  width="13px" height="13px">
+              </a>
+          </li>
+          <li class="nav-item col-2 col-xs-2 p-0 text-center">
+              <a class="nav-link {{MFINISH}} p-1 m-0" href="/selection/select/MFINISH/MFINISH/">
+                  <p style="font-size: 12px; display: inline;" class="pr-1">FINISH </p>
+                  <img src="https://img.icons8.com/flat_round/20/000000/arrow-right.png"  width="13px" height="13px">
+              </a>
+          </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!--tab 1 - fabric-->
+              <div class="tab-pane container fade {{MFABRIC}}" >
+                   <div class="progress" style="height: 5px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="height:100%;width: 25%;"></div>
+                   </div>
+                    {% include 'fabric.html' %}
+              </div>
+            <!--tab 2 - design-->
+              <div class="tab-pane container fade {{MDESIGN}}" >
+                   <div class="progress" style="height: 5px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%;height:100%;"></div>
+                  </div>
+                  {% include 'design.html' %}
+              </div>
+            <!--tab 3 - details-->
+              <div class="tab-pane container fade {{MDETAILS}}">
+                   <div class="progress" style="height: 5px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:60%;height:100%;"></div>
+                   </div>
+                  {% include 'details.html' %}
+              </div>
+            <!--tab 4 - size-->
+              <div class="tab-pane container fade {{MSIZE}}" >
+                   <div class="progress" style="height: 5px;" >
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:80%;height:100%;"></div>
+                  </div>
+                   {% include 'size.html' %}
+              </div>
+            <!--tab 5 - finish-->
+              <div class="tab-pane container fade {{MFINISH}}" >
+                   <div class="progress" style="height: 5px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%;height:100%;"></div>
+                   </div>
+                  {% include 'finish.html' %}
+              </div>
+        </div>
     </div>
-</div>
-{% load sweetify %}
+    {% load sweetify %}
     {% sweetify %}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

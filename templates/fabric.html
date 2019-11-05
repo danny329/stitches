@@ -1,130 +1,100 @@
  {% load static %}
 {% static "images" as baseUrl %}
- <head>
+<head>
 <!--     to send data to server using jquery-->
-     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
-</script>
-      <style>
-       .clothmenu_radio{
-            transform: scale(1);
-            width:130px;
-            height:150px;
-            position:absolute;
-            z-index: 1;
-            opacity: 0.0;
+ <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+  <style>
+   .clothmenu_radio{
+        transform: scale(1);
+        width:150px;
+        height:150px;
+        position:absolute;
+        z-index: 1;
+        opacity: 0.0;
 
-       }
-        .labradio
-        {
-            cursor: pointer;
-            position:relative;
-
-
-        }
-       .clothmenu_radio:checked + .labradio .clothmenu
-       {
-            border:0.5px solid red;
-       }
+   }
+    .labradio
+    {
+        cursor: pointer;
+        position:relative;
 
 
-    </style>
- </head>
-  {% block fabric %}
-
-    <section class="text-center">
-			                <div class="inner mx-auto ">
-			                	<h3>Fabric Selections</h3>
-                                <form action="/selection/select/FABRIC/" method="POST">
-                                    {% csrf_token %}
-                                    <div class="form-row col text-center">
-                                    <div class="form-wrapper  col-sm-4">
-                                            <select name="color_select" class="form-control text-center">
-                                                <option value=""  disabled selected>COLOR</option>
-                                                {% for val in color %}
-                                                <option value="{{val}}">{{val}}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    <div class="form-wrapper  col-sm-4">
-                                            <select name="pattern" class="form-control ">
-                                                <option value="" disabled selected>PATTERN</option>
-                                                {% for val in pattern %}
-                                                <option value="{{val}}">{{val}}</option>
-                                                {% endfor %}
-                                            </select>
-                                    </div>
-                                    <div class="form-wrapper col-sm-4">
-                                            <select name="type"  class="form-control ">
-                                                <option value="" disabled selected>TYPE</option>
-                                               {% for val in clothtype %}
-                                                <option value="{{val}}">{{val}}</option>
-                                                {% endfor %}
-                                            </select>
-                                    </div>
-								</div>
-								<div class="form-row col mx-auto">
-									<div class="col-sm mt-3 ">
-                                        <input type="submit" class="bg-success btn">
-									</div>
-								</div>
-                                </form>
-                                <form method="post" name="senddata" action="/selection/select/FABRIC/">
-                                    {% csrf_token %}
-								<div class="form-row mt-2">
-									<div class="form-holder form-holder-2 row">
-                                        {% for val in clothmenu %}
+    }
+   .clothmenu_radio:checked + .labradio .clothmenu
+   {
+        border: 0.5px solid red;
+   }
 
 
+</style>
+</head>
+{% block fabric %}
+<section class="text-center pt-2 m-0">
+    <h3>Fabric Selections</h3>
+    <form action="/selection/select/FABRIC/FABRIC/" method="POST" class="pb-2">
+        {% csrf_token %}
+        <div class="form-row col text-center">
+            <div class="form-wrapper  col-sm-3 p-1">
+                    <select name="color_select" class="form-control border-0">
+                        <option value=""  disabled selected>COLOR</option>
+                        {% for val in color %}
+                        <option value="{{val}}">{{val}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <div class="form-wrapper  col-sm-3 p-1">
+                    <select name="pattern" class="form-control border-0">
+                        <option value="" disabled selected>PATTERN</option>
+                        {% for val in pattern %}
+                        <option value="{{val}}">{{val}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <div class="form-wrapper col-sm-3 p-1">
+                    <select name="type"  class="form-control  border-0">
+                        <option value="" disabled selected>TYPE</option>
+                       {% for val in clothtype %}
+                        <option value="{{val}}">{{val}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <div class="form-wrapper col-sm-3 p-1">
+                <input type="submit" class="btn btn-outline-info">
+            </div>
+        </div>
+    </form>
+    <form method="post" name="senddata" action="/selection/select/FABRIC/FABRIC/">
+        {% csrf_token %}
+        <div class="row ">
+            {% for val in clothmenu %}
+            <div class="col-lg-2 col-md-3 col-sm-4 p-1 ">
+                <input class="clothmenu_radio border "  type='radio'  value='{{val}}' name='clothmenu_select' id="radio1" />
+                <label for="radio1" class="labradio ">
+                    <div class="card  clothmenu" style="width:150px; height:150px;">
+                        <img class="card-img-top" src="{{val.image.url}}" alt="Card image">
+                        <div class="">
+                        <p class="text-center mb-0" style="font-size: 12px;"> {{val}}</p>
+                        <p class="text-center mb-0" style="font-size: 11px;">₹&nbsp;{{val.price}} </p>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            {% empty %}
+                <p class="mx-auto text-center">Sorry, no selection to display.</p>
+            {% endfor %}
+        </div>
+    </form>
+    <div>
+        {% include 'custom_summary.html' %}
+    </div>
+</section>
+<script type='text/javascript'>
 
-                                        <div class="col-sm-2 mx-auto mb-3">
-                                        <input class="clothmenu_radio mx-auto "  type='radio'  value='{{val}}' name='clothmenu_select' id="radio1" />
-                                        <label for="radio1" class="labradio mx-auto">
-                                            <div class="card  clothmenu" style="width:130px; height:150px;font-size: 12px;">
-                                              <img class="card-img-top" src="{{val.image.url}}" alt="Card image">
-                                              <div class="">
-                                                <h6 class="text-center"> {{val}}</h6>
-                                                <h6 class="text-center"><span style="font-weight:normal;">₹&nbsp;{{val.price}}</span> </h6>
-
-                                              </div>
-                                            </div>
-
-                                        </div>
-                                        </label>
-                                    {% empty %}
-                                            <p class="mx-auto text-center">Sorry, no selection to display.</p>
-                                    {% endfor %}
-
-                                    {% for r in rest %}
-
-
-                                        <div class="col-sm-2"  style="visibility:hidden;">
-                                            <div class="card  clothmenu" style="width:130px; height:130px;font-size: 12px;">
-                                              <img class="card-img-top" src="{{val.image.url}}" alt="Card image">
-                                              <div class="mt-2">
-                                                <p class="text-center"><b> {{val}} </b></p>
-                                                <p class="text-center"> {{val.price}}</p>
-
-                                              </div>
-                                            </div>
-
-                                        </div>
-                                        </label>
-                                    {% endfor %}
-
-									</div>
-
-								</div>
-						        </form>
-							</div>
-			            </section>
- {% include 'custom_summary.html' %}
- <script type='text/javascript'>
-
- $(document).ready(function() {
-   $('input[name=clothmenu_select]').change(function(){
-        $('form[name=senddata]').submit();
-   });
-  });
+$(document).ready(function() {
+$('input[name=clothmenu_select]').change(function(){
+    $('form[name=senddata]').submit();
+});
+});
 
 </script>
-  {% endblock%}
+{% endblock%}

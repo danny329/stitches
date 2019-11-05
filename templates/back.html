@@ -10,8 +10,6 @@
             transform: scale(1);
             background:red;
             position:absolute;
-            width:200px;
-            height:130px;
             z-index: 1;
             opacity: 0.0;
 
@@ -23,43 +21,30 @@
 
 
         }
-       .labradio .back_radio:checked + .labradio .back
-       {
-            border:0.5px solid red;
-       }
 
 
     </style>
  </head>
 <section>
-     <form method="post" name="senddataback" action="/selection/select/BACK/">
+     <form method="post" name="senddataback" action="/selection/select/MDESIGN/DBACK/">
         {% csrf_token %}
-    <div class="form-row mt-2">
-        <div class="form-holder form-holder-2 row">
+            <div class="form-holder form-holder-2 row">
             {% for val in back %}
-
-
-             <div class="col-sm ">
-             <label for="radio1" class="labradio mx-auto">
-             <input class="back_radio mx-auto"  type='radio'  value='{{val}}' name='back_select' id="radio1" />
-                <div class="card  back" style="width:150px; height:150px;font-size: 8px;">
-                  <img class="card-img-top"  src="{{val.back_image.url}}" alt="Card image">
-                  <div class="mt-2 btn btn-light">
+             <div class="col-lg-2 col-md-3 col-sm-6 text-center  p-1 ">
+             <label for="radio1" class="labradio">
+                <div class="card  back" >
+                    <input class="back_radio mx-auto"  type='radio' style="width:150px; height:150px;"  value='{{val}}' name='back_select' id="radio1" />
+                    <img class="card-img-top"  src="{{val.back_image.url}}" style="width:150px; height:150px;" alt="Card image">
+                    <div class="mt-2 btn btn-light">
                     <p class="text-center "><b> {{val.back_style}} </b></p>
-                  </div>
+                    </div>
                 </div>
-
-            </div>
             </label>
-
+            </div>
         {% empty %}
                 <p class="mx-auto text-center">Sorry, no selection to display.</p>
         {% endfor %}
-
-
         </div>
-
-    </div>
     </form>
 </section>
   <script type='text/javascript'>

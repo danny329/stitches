@@ -10,56 +10,36 @@
             transform: scale(1);
             frontground:red;
             position:absolute;
-            width:200px;
-            height:130px;
             z-index: 1;
             opacity: 0.0;
-
        }
         .labradio
         {
             cursor: pointer;
             position:relative;
-
-
         }
-       .labradio .front_radio:checked + .labradio .front
-       {
-            border:0.5px solid red;
-       }
-
-
-    </style>
+       </style>
  </head>
 <section>
-     <form method="post" name="senddatafront" action="/selection/select/FRONT/">
+     <form method="post" name="senddatafront" action="/selection/select/MDESIGN/DFRONT/">
         {% csrf_token %}
-    <div class="form-row mt-2">
-        <div class="form-holder form-holder-2 row">
+        <div class="row">
             {% for val in front %}
-
-
-             <div class="col-sm ">
+             <div class="col-lg-2 col-md-3 col-sm-6 text-center  p-1 ">
              <label for="radio1" class="labradio mx-auto">
-             <input class="front_radio mx-auto"  type='radio'  value='{{val}}' name='front_select' id="radio1" />
-                <div class="card  front" style="width:150px; height:150px;font-size: 8px;">
-                  <img class="card-img-top"  src="{{val.front_image.url}}" alt="Card image">
+                <div class="card  front" >
+                     <input class="front_radio mx-auto" style="width:150px; height:150px;" type='radio'  value='{{val}}' name='front_select' id="radio1" />
+                  <img class="card-img-top" style="width:150px; height:150px;" src="{{val.front_image.url}}" alt="Card image">
                   <div class="mt-2 btn btn-light">
                     <p class="text-center "><b> {{val.front_style}} </b></p>
                   </div>
                 </div>
-
-            </div>
             </label>
-
+             </div>
         {% empty %}
                 <p class="mx-auto text-center">Sorry, no selection to display.</p>
         {% endfor %}
-
-
         </div>
-
-    </div>
     </form>
 </section>
   <script type='text/javascript'>

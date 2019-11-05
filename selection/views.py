@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect, reverse, HttpResponse
 from .models import Color,Pattern,ClothType, ClothMenu, Orders , Collar, Cuff, ButtonHole,Button, Back,Front, Pocket, ShirtFit, Measurement,StandardSize,OrderStatusCode
 from customer.forms import MeasurementForm
 from django.contrib.auth.models import User
+import sweetify
 # Create your views here.
 try:
     design_summary = Orders()
@@ -11,7 +12,7 @@ except Exception as e:
 def selectionpage(request):
     return render(request, 'selectionpage.html')
 
-def select(request, part=0):
+def select(request, part='',subpart=''):
     #to view list of already existing datas
     try:
 
@@ -36,39 +37,6 @@ def select(request, part=0):
     global context
     if request.user.is_authenticated:
         list_of_measure = Measurement.objects.filter(user=request.user)
-
-    rest = []
-    if request.method == 'GET':
-        try:
-            count = 0
-            # initial loading of the page
-            count = clothmenu.count()
-            try:
-                if count > 7:
-                    count = count % 7
-            except ZeroDivisionError:
-                count = 2
-
-            # fill of div col
-            rest.clear()
-            for i in range(1, 6 - (count % 6)):
-                rest.append(i)
-
-        except:
-            print('error get')
-
-
-        context = {'color': color, 'pattern': pattern, 'clothtype': clothtype, 'pocket': pocket, 'collar': collar, 'back': back, 'front': front, 'cuff': cuff,
-                   'button': button, 'buttonhole': buttonhole, 'standardsize': standardsize, 'shirtfit': shirtfit, 'clothmenu': clothmenu, 'count': count,
-                   'rest': rest, 'summary': design_summary, 'measurement': measurement, 'list_of_measure':list_of_measure}
-        # if request.user.is_authenticated and Measurement.objects.get(user__username=request.user):
-        #     instance = Measurement.objects.get(user__username=request.user)
-        #     existing_measurement = MeasurementForm(instance=instance)
-        #     context['existing_measurement']: existing_measurement
-        context['scriptf'] = 'show active'
-        context['scriptdco'] = 'show active'
-        context['scriptdeb'] = 'show active'
-        return render(request, 'new_selection.html', context)
 
 
     if request.method == 'POST':
@@ -95,16 +63,6 @@ def select(request, part=0):
             elif 'type' in request.POST:
                 clothmenu = ClothMenu.objects.filter(cloth_type__cloth_type_style=clothtypes)
             # selection search ends here--!
-            # for div alignment
-            count = clothmenu.count()
-            try:
-                if count > 7:
-                    count = count % 7
-            except ZeroDivisionError:
-                count = 2
-            rest.clear()
-            for i in range(1, 6 - (count % 6)):
-                rest.append(i)
             # summary on selection
             try:
                 if 'clothmenu_select' in request.POST:
@@ -154,74 +112,71 @@ def select(request, part=0):
                 design_summary.size = measure
                 measure.save()
                 print(design_summary.size)
-
-            context = {'color': color, 'pattern': pattern, 'clothtype': clothtype, 'pocket': pocket, 'collar': collar,'back': back, 'front': front, 'cuff': cuff,
-                       'button': button, 'buttonhole': buttonhole,'standardsize': standardsize, 'shirtfit': shirtfit, 'clothmenu': clothmenu, 'count': count,
-                       'rest': rest, 'summary': design_summary, 'measurement': measurement, 'list_of_measure':list_of_measure }
             # end  selection summary
         except Exception as e:
             print(e)
+    context = {'color': color, 'pattern': pattern, 'clothtype': clothtype, 'pocket': pocket, 'collar': collar,
+               'back': back, 'front': front, 'cuff': cuff,
+               'button': button, 'buttonhole': buttonhole, 'standardsize': standardsize, 'shirtfit': shirtfit,
+               'clothmenu': clothmenu,
+               'summary': design_summary, 'measurement': measurement, 'list_of_measure': list_of_measure}
 
+    if part == 'FABRIC' or part == '':
+        context['MFABRIC'] = 'show active'
 
-        if part == 'FABRIC':
-            context['scriptf'] = 'show active'
-            context['scriptdco'] = 'show active'
-            context['scriptdeb'] = 'show active'
-        elif part == 'COLLAR':
-            context['scriptdco'] = 'show active'
-            context['scriptd'] = 'show active'
-            context['scriptdeb'] = 'show active'
-        elif part == 'CUFF':
-            context['scriptdcu'] = 'show active'
-            context['scriptd'] = 'show active'
-            context['scriptdeb'] = 'show active'
-        elif part == 'BACK':
-            context['scriptdb'] = 'show active'
-            context['scriptd'] = 'show active'
-            context['scriptdeb'] = 'show active'
-        elif part == 'FRONT':
-            context['scriptdf'] = 'show active'
-            context['scriptd'] = 'show active'
-            context['scriptdeb'] = 'show active'
-        elif part == 'POCKET':
-            context['scriptdp'] = 'show active'
-            context['scriptd'] = 'show active'
-            context['scriptdeb'] = 'show active'
-        elif part == 'BUTTONHOLE':
-            context['scriptdebu'] = 'show active'
-            context['scriptde'] = 'show active'
-            context['scriptdco'] = 'show active'
-        elif part == 'BUTTON':
-            context['scriptdeb'] = 'show active'
-            context['scriptde'] = 'show active'
-            context['scriptdco'] = 'show active'
-        elif part == 'SIZE':
-            context['scripts'] = 'show active'
-            context['scriptdeb'] = 'show active'
-            context['scriptdco'] = 'show active'
+    if part == 'MDESIGN':
+        context['MDESIGN'] = 'show active'
+        if subpart == 'DCOLLAR' or subpart == '':
+            context['DCOLLAR'] = 'show active'
+        if subpart == 'DCUFF':
+            context['DCUFF'] = 'show active'
+        if subpart == 'DBACK':
+            context['DBACK'] = 'show active'
+        if subpart == 'DFRONT':
+            context['DFRONT'] = 'show active'
+        if subpart == 'DPOCKET':
+            context['DPOCKET'] = 'show active'
 
-        return render(request, 'new_selection.html', context)
+    if part == 'MDETAILS':
+        context['MDETAILS'] = 'show active'
+        if subpart == 'DEBUTTONHOLE':
+            context['DEBUTTONHOLE'] = 'show active'
+        if subpart == 'DEBUTTON' or subpart == '':
+            context['DEBUTTON'] = 'show active'
+
+    if part == 'MSIZE':
+        context['MSIZE'] = 'show active'
+
+    if part == 'MFINISH':
+        context['MFINISH'] = 'show active'
+    return render(request, 'new_selection.html', context)
 
 def addtocart(request):
     global design_summary
     global context
     if design_summary.size is None and design_summary.shirtfit is not None and design_summary.standard_size is None:
-        return redirect('/selection/select', context)
+        sweetify.warning(request,'Measurement is a neccessary field')
+        return redirect('/selection/select/MSIZE/MSIZE/', context)
     if design_summary.size is None and design_summary.shirtfit is None and design_summary.standard_size is not None:
-        return redirect('/selection/select', context)
+        sweetify.warning(request, 'Measurement is a neccessary field')
+        return redirect('/selection/select/MSIZE/MSIZE/', context)
     if design_summary.size is None and design_summary.shirtfit is None and design_summary.standard_size is None:
-        return redirect('/selection/select', context)
+        sweetify.warning(request, 'Measurement is a neccessary field')
+        return redirect('/selection/select/MSIZE/MSIZE/', context)
     if request.user.is_authenticated:
+        if design_summary.cloth_menu == None:
+            sweetify.warning(request, 'Should select a cloth type')
+            return redirect('/selection/select', context)
         design_summary.user = request.user
         design_summary.quantity = 1
         design_summary.subtotal = design_summary.quantity * design_summary.cloth_menu.price
         design_summary.status = OrderStatusCode.objects.get(status='INCART')
         design_summary.save()
         design_summary = Orders()
+        sweetify.success(request, 'Item added to cart.')
         return redirect('/cart/')
     else:
-        print('hello to login page')
-        print(context)
+        sweetify.warning(request, 'Login is required')
         return render(request, 'login_page.html', context)
 def mes(request):
     measurement = MeasurementForm()
